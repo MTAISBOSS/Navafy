@@ -5,7 +5,9 @@
 html {
   font-family: vasir;
   direction: rtl;
-  background-image: url("data:image/jpeg;base64,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");
+  background-repeat: no-repeat;
+  background-image: url("https://cdn.dribbble.com/users/1770290/screenshots/6232132/bg_83.gif");
+  object-fit: cover;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -104,11 +106,12 @@ div {
   width: 55%;
   min-height: 65vh;
   min-width: 55vh;
-
 }
 .shadow {
   -webkit-box-shadow: 0px 6px 15px -1px rgba(0, 0, 0, 0.4);
   box-shadow: 0px 6px 15px -1px rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 10px;
 }
 .logincontainer {
   /* width: 100%; */
@@ -119,7 +122,6 @@ div {
   min-height: 60vh;
   min-width: 50vh;
   transition: 0.5s;
-
 }
 
 .inputfield {
@@ -167,6 +169,7 @@ div {
   left: 50%;
   transform: translate(-50%, -60%);
   text-align: center;
+  color: rgb(235, 235, 235);
 }
 .buttonbottom {
   position: absolute;

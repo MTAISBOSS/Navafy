@@ -13,6 +13,7 @@ function myTextfield(props) {
       }}
       noValidate
       autoComplete="off"
+      
     >
       <TextField
         className="persionRtl"
@@ -21,6 +22,7 @@ function myTextfield(props) {
         type={props.type}
         label={props.text}
         variant={props.variant}
+        color="info"
         
       />
     </Box>
