@@ -1,18 +1,17 @@
 import ContainedButtons from "./components/MyButton";
 import Login from "./components/Pages/Login";
-import { Router } from "react-router-dom";
-import { Route, Redirect, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Main from "./components/Pages/Main";
 
 function App() {
   return (
-    <div className="App">
-      <Login/>
-      {/* <Router>
-        <Routes>
-          <Route exact path="/" element={<Login />}></Route>
-        </Routes>
-      </Router> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Main/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

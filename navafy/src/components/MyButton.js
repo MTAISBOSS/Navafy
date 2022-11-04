@@ -1,7 +1,7 @@
-function myButton(text) {
+function myButton(props) {
   return (
-      <button className="mybutton" type="button"  >
-        ورود
+      <button className="mybutton" type="button" onClick={props.onClick} >
+        {props.btntext}
       </button>
   );
 }

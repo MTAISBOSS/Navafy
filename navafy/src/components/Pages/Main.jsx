@@ -1,7 +1,7 @@
 import { Component } from "react";
-import { Router } from "react-router-dom";
-import { Route, Redirect, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Login";
+import MyButton from "../MyButton";
 
 class Main extends Component {
   state = {};
@@ -9,7 +9,11 @@ class Main extends Component {
     return (
       <div className="App">
         <h1>Hello There</h1>
-        <Router>
+        <MyButton btntext="ورود"></MyButton>
+        <form>
+          <input id="username" required name="username" className="inputfield" type="email"></input>
+        </form>
+        {/* <BrowserRouter>
           <Routes>
             <Route exact path="/"></Route>
             <Route exact path="/login">
@@ -17,7 +21,7 @@ class Main extends Component {
             </Route>
             <Route exact path="/signup"></Route>
           </Routes>
-        </Router>
+        </BrowserRouter> */}
       </div>
     );
   }
