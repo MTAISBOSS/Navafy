@@ -1,8 +1,8 @@
 function myButton(props) {
   return (
-      <button className="mybutton" type="button" onClick={props.onClick} >
-        {props.btntext}
-      </button>
+    <button className="mybutton shadow" type="button" onClick={props.onClick}>
+      {props.btntext}
+    </button>
   );
 }
 
