@@ -7,11 +7,11 @@ import {Card2022} from './cards/Card2022Popular'
 import {CardFocusMusic} from './cards/CardFocusMusic'
 import {CardClassic} from './cards/CardClassic'
 import { red } from '@mui/material/colors';
-import { Navbar } from './components/Navbar';
+import { Navbar } from './Navbar';
 
 const color = red[500];
 
-export const Homepagegrid = () => {
+export const homepage = () => {
     return (
   <> 
   <div className='App' dir='rtl'>

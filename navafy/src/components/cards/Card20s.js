@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import card20s from '/home/ichan/Desktop/tahlil/navafy/src/components/cards/cardsimg/20s.jpg'
+import card20s from './cardsimg/20s.jpg'
 
 export const Card20s = () => {
   return (

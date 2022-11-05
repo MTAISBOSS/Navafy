@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import stayfocused from '/home/ichan/Desktop/tahlil/navafy/src/components/cards/cardsimg/stayfocused.jpg'
+import stayfocused from './cardsimg/stayfocused.jpg'
 
 export const CardFocusMusic = () => {
   return (

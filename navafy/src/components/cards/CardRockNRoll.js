@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import rocknroll from '/home/ichan/Desktop/tahlil/navafy/src/components/cards/cardsimg/Rock-n-Roll.jpg'
+import rocknroll from './cardsimg/Rock-n-Roll.jpg'
 
 export const CardRockNRoll = () => {
   return (

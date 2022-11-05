@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import popular from '/home/ichan/Desktop/tahlil/navafy/src/components/cards/cardsimg/2022.jpg'
+import popular from './cardsimg/2022.jpg'
 
 export const Card2022 = () => {
   return (
