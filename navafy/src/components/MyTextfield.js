@@ -13,7 +13,6 @@ function myTextfield(props) {
       }}
       noValidate
       autoComplete="off"
-      
     >
       <TextField
         className="persionRtl"
@@ -25,7 +24,9 @@ function myTextfield(props) {
         color={props.color}
         helperText={props.helperText}
         autoComplete="on"
-        
+        sx={{
+          "& > :not(style)": { color: "white" },
+        }}
       />
     </Box>
   );
