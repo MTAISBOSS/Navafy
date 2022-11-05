@@ -20,7 +20,7 @@ export const homepage = () => {
 <Grid container  margin={15}>
     <Grid item md={12} my={5}>
         <Box>
-            
+            فهرست ترانه های پیشنهادی
         </Box>
     </Grid>
     <Grid item md={2}>
@@ -42,7 +42,7 @@ export const homepage = () => {
 
     <Grid item md={12} my={5}>
         <Box>
-            playlist
+            فهرست ترانه
         </Box>
     </Grid>
     <Grid item md={2}>
