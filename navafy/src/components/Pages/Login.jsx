@@ -4,20 +4,19 @@ import MyTextfield from "../MyTextfield";
 import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "../../Image/b2.jfif";
+import background from "../../Image/hh.gif";
 import rightbackground from "../../Image/music-wallpaper.jpg";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDeafult();
-    console.log({ username, password });
     setPassword("");
     setUsername("");
   };
-
   const gotoSignUpPage = () => navigate("/signup");
   const gotoHomePage = () => navigate("/");
 
@@ -47,6 +46,7 @@ const Login = () => {
                 variant="standard"
                 required
                 value={username}
+                color="secondary"
                 onChange={(e) => setUsername(e.target.value)}
               ></MyTextfield>
 
@@ -59,6 +59,7 @@ const Login = () => {
                 required
                 variant="standard"
                 value={password}
+                color="secondary"
                 onChange={(e) => setPassword(e.target.value)}
               ></MyTextfield>
               <div className="buttonbottom">

@@ -22,7 +22,9 @@ function myTextfield(props) {
         type={props.type}
         label={props.text}
         variant={props.variant}
-        color="info"
+        color={props.color}
+        helperText={props.helperText}
+        autoComplete="on"
         
       />
     </Box>

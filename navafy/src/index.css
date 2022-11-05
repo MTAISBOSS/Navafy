@@ -1,35 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap");
+
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: vasir;
+  font-family: Vasir;
   direction: rtl;
   background-repeat: no-repeat;
-  background-image: url("https://cdn.dribbble.com/users/1770290/screenshots/6232132/bg_83.gif");
+  background-image: url("https://cdn.dribbble.com/users/736467/screenshots/5465876/blobs-longer.gif");
   object-fit: cover;
   background-repeat: no-repeat;
   background-size: cover;
 }
-@font-face {
-  font-family: vazir;
-  font-style: normal;
-  font-weight: 400;
-  src: url("fonts/Vazir.eot");
-}
 
 body {
   margin: 0;
-  font-family: vasir;
+  font-family: "Vazirmatn", sans-serif;
   direction: rtl;
 }
 div {
-  font-family: vasir;
   direction: rtl;
 }
-
+input {
+  color: #ffffff;
+}
 .loginbackground {
-  background-image: url("https://images4.newscred.com/Zz1kNmFkYmFmNzhlNGIxMWViYTU1ZDFmYjg0ZWI5MTc4Zg==");
+  background-image: url("https://cdn.dribbble.com/users/2410946/screenshots/6808682/lava_lamp_03.gif");
 }
 .mybutton {
   background-color: #ff25a8;
@@ -101,12 +98,7 @@ div {
   margin-top: 5px;
   display: block;
 }
-.logincontainer:hover {
-  padding: 80px 100px;
-  width: 55%;
-  min-height: 65vh;
-  min-width: 55vh;
-}
+
 .shadow {
   -webkit-box-shadow: 0px 6px 15px -1px rgba(0, 0, 0, 0.4);
   box-shadow: 0px 6px 15px -1px rgba(0, 0, 0, 0.4);
@@ -114,16 +106,33 @@ div {
   border-radius: 10px;
 }
 .logincontainer {
-  /* width: 100%; */
   border-radius: 20px;
-  /* min-height: 60vh; */
   padding: 80px 100px;
   width: 50%;
   min-height: 60vh;
   min-width: 50vh;
   transition: 0.5s;
 }
-
+.logincontainer:hover {
+  padding: 80px 100px;
+  width: 55%;
+  min-height: 65vh;
+  min-width: 55vh;
+}
+.signupcontainer {
+  border-radius: 20px;
+  padding: 80px 120px;
+  width: 50%;
+  min-height: 70vh;
+  min-width: 50vh;
+  transition: 0.5s;
+}
+.signupcontainer:hover {
+  padding: 80px 120px;
+  width: 55%;
+  min-height: 80vh;
+  min-width: 55vh;
+}
 .inputfield {
   height: 45px;
   padding: 10px 15px;
@@ -193,6 +202,7 @@ div {
 }
 .persionRtl {
   direction: rtl;
+  color: #ffffff;
 }
 .pointer {
   cursor: pointer;
