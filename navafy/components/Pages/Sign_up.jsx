@@ -9,14 +9,14 @@ import { useFormik, validateYupSchema } from "formik";
 import { Grid } from "@mui/material";
 import Divider from "@mui/material/Divider";
 
-const Artist_Sign_up = () => {
+const Sign_up = () => {
   const navigate = useNavigate();
 
   const [isDataValid, setIsDataValid] = useState(false);
 
   const gotoLoginPage = () => navigate("/login");
   const gotoHomePage = () => navigate("/");
-  const gotoSignUpPage = () => navigate("/signup");
+  const gotoArtistSignUpPage = () => navigate("/artist_signup");
 
   const titlestyles = {
     color: "black",
@@ -52,20 +52,6 @@ const Artist_Sign_up = () => {
 
   return (
     <Grid container xs={12} direction="row">
-      <Grid className="center" item xs={2} container direction="column">
-        <h1
-          style={{
-            color: "#00cf2d",
-            textAlign: "right",
-            height: "80px",
-            fontSize: 20,
-            borderRadius: "0px",
-            margin: 2,
-          }}
-        >
-          نوافای
-        </h1>
-      </Grid>
       <Grid className="center" item xs={8} container direction="column">
         <Grid
           item
@@ -75,10 +61,10 @@ const Artist_Sign_up = () => {
         >
           <Grid item xs={1} />
           <Grid item xs={2}>
-            <h1 style={titlestyles}>ساخت حساب آرتیست</h1>
+            <h1 style={titlestyles}>ساخت حساب کاربری</h1>
           </Grid>
           <Divider sx={{ backgroundColor: "#d0d0d0" }} />
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <form className="center" onSubmit={handleSubmit}>
               <MyTextfield
                 id="email"
@@ -169,10 +155,10 @@ const Artist_Sign_up = () => {
                 }}
               />
               <MyButton
-                btntext="بازگشت"
+                btntext="ثبت نام به عنوان آرتیست"
                 disabled={isDataValid}
                 onClick={() => {
-                  gotoSignUpPage();
+                  gotoArtistSignUpPage();
                 }}
                 variant="contained"
                 style={{
@@ -182,8 +168,8 @@ const Artist_Sign_up = () => {
                   fontWeight: "bold",
                   fontFamily: "Vazirmatn",
                   height: 50,
-                  width: 200,
-                  fontSize: 20,
+                  width: 250,
+                  fontSize: 18,
                   borderRadius: 15,
                 }}
               />
@@ -191,9 +177,56 @@ const Artist_Sign_up = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid className="center" item xs={2} container direction="column"></Grid>
+      <Grid className="center" item xs={4} container direction="column">
+        <Grid item xs={2} />
+        <Grid item xs={1}>
+          <h1
+            style={{
+              color: "white",
+              textAlign: "center",
+              height: "80px",
+              fontSize: 50,
+              borderRadius: "0px",
+            }}
+          >
+            حساب کاربری دارید؟
+          </h1>
+          <h2
+            style={{
+              color: "white",
+              fontWeight: "normal",
+              textAlign: "center",
+              height: "80px",
+              fontSize: 15,
+              borderRadius: "0px",
+            }}
+          >
+            وارد حساب کاربری خود شوید و از قابلیت های سرویس ما استفاده کنید ...
+          </h2>
+        </Grid>
+        <Grid item xs={1}>
+          <MyButton
+            btntext="ورود"
+            disabled={isDataValid}
+            variant="contained"
+            onClick={() => {
+              gotoLoginPage();
+            }}
+            style={{
+              backgroundColor: "#00cf2d",
+              color: "white",
+              fontWeight: "bold",
+              fontFamily: "Vazirmatn",
+              height: 50,
+              width: 200,
+              fontSize: 20,
+              borderRadius: 15,
+            }}
+          />
+        </Grid>
+      </Grid>
     </Grid>
   );
 };
 
-export default Artist_Sign_up;
+export default Sign_up;
