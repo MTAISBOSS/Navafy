@@ -1,8 +1,5 @@
-import { PeopleSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import AccountCircle from "@mui/icons-material/Forum";
-import Key from "@mui/icons-material/KeyRounded";
 
 function myTextfield(props) {
   return (
@@ -13,7 +10,6 @@ function myTextfield(props) {
       }}
       noValidate
       autoComplete="off"
-      
     >
       <TextField
         className="persionRtl"
@@ -23,9 +19,19 @@ function myTextfield(props) {
         label={props.text}
         variant={props.variant}
         color={props.color}
+        
         helperText={props.helperText}
         autoComplete="on"
-        
+        error = {props.error}
+        onChange = {props.onChange}
+        onBlur = {props.onBlur}
+        accept = {props.accept}
+        style={props.style}
+        ref={props.ref}
+        sx={{
+          "& > :not(style)": { color: "grey",fontFamily:"Vazirmatn"}
+          
+        }}
       />
     </Box>
   );
