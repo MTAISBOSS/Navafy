@@ -54,7 +54,20 @@ const Login = () => {
     <Grid container xs={12} direction="row">
       <Grid className="center" item xs={4} container direction="column">
         {/* <img style={{ height: "100vh", width: "120vh" }} src={background} /> */}
-        <Grid item xs={2} />
+        <Grid item xs={2}>
+          <h1
+            style={{
+              color: "#00cf2d",
+              textAlign: "right",
+              height: "80px",
+              fontSize: 20,
+              borderRadius: "0px",
+              margin: 2,
+            }}
+          >
+            نوافای
+          </h1>
+        </Grid>
         <Grid item xs={1}>
           <h1
             style={{
@@ -121,7 +134,7 @@ const Login = () => {
                 text="نام کاربری"
                 type="text"
                 name="name"
-                style={{ width: 300, backgroundColor: "#e0eef2", margin:10,}}
+                style={{ width: 300, backgroundColor: "#e0eef2", margin: 10 }}
                 variant="outlined"
                 required
                 color="primary"
@@ -138,7 +151,7 @@ const Login = () => {
                 type="password"
                 text="رمز ورود"
                 name="password"
-                style={{ width: 300, backgroundColor: "#e0eef2",margin:10, }}
+                style={{ width: 300, backgroundColor: "#e0eef2", margin: 10 }}
                 minLength={8}
                 required
                 variant="outlined"

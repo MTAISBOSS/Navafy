@@ -52,7 +52,20 @@ const Artist_Sign_up = () => {
 
   return (
     <Grid container xs={12} direction="row">
-      <Grid className="center" item xs={2} container direction="column"></Grid>
+      <Grid className="center" item xs={2} container direction="column">
+        <h1
+          style={{
+            color: "#00cf2d",
+            textAlign: "right",
+            height: "80px",
+            fontSize: 20,
+            borderRadius: "0px",
+            margin: 2,
+          }}
+        >
+          نوافای
+        </h1>
+      </Grid>
       <Grid className="center" item xs={8} container direction="column">
         <Grid
           item
