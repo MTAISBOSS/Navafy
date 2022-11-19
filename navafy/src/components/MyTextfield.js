@@ -15,7 +15,6 @@ function myTextfield(props) {
       autoComplete="off"
     >
       <TextField
-        className="persionRtl"
         id={props.id}
         name={props.name}
         type={props.type}
@@ -25,7 +24,7 @@ function myTextfield(props) {
         helperText={props.helperText}
         autoComplete="on"
         sx={{
-          "& > :not(style)": { color: "white" },
+          "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
         }}
       />
     </Box>
