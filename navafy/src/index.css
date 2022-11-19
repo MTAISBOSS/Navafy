@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +11,199 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+=======
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Vazirmatn", sans-serif;
+
+  direction: rtl;
+  background-color: #2b2135;
+
+  /* background-repeat: no-repeat;
+  background-image: url("https://cdn.dribbble.com/users/736467/screenshots/5465876/blobs-longer.gif");
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+body {
+  margin: 0;
+  direction: rtl;
+}
+div {
+  direction: rtl;
+}
+
+input {
+  color: #d0d0d0;
+}
+
+.panelbackground {
+  /* background-image: url("https://cdn.dribbble.com/users/2410946/screenshots/6808682/lava_lamp_03.gif"); */
+  background-color: rgb(255, 255, 255);
+}
+.mybutton {
+  font-family: "Vazirmatn", sans-serif;
+  font-size: 15px;
+  width: 100px;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+
+  display: block;
+  text-decoration: none;
+}
+
+.mybutton:hover {
+  border-radius: 15px;
+  width: 120px;
+}
+.mybutton:disabled {
+  opacity: 0.35;
+}
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.center {
+  text-align: center;
+}
+.contentcenter {
+  align-items: center;
+  justify-content: center;
+}
+
+
+.shadow {
+  -webkit-box-shadow: 0px 6px 15px -1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 6px 15px -1px rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 10px;
+}
+.logincontainer {
+  text-align: center;
+  height: 100vh;
+  width: 50%;
+  border-radius: 0%;
+  transition: 0.2s;
+}
+
+.signupcontainer {
+  border-radius: 20px;
+  padding: 80px 120px;
+  width: 50%;
+  min-height: 70vh;
+  min-width: 50vh;
+  transition: 0.5s;
+}
+.signupcontainer:hover {
+  padding: 80px 120px;
+  width: 55%;
+  min-height: 80vh;
+  min-width: 55vh;
+}
+.inputfield {
+  height: 30px;
+  padding: 20px 50px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  border-color: #ff25a8;
+  text-align: center;
+  background: none;
+  font-size: 10px;
+  transition: 0.3s;
+}
+
+.inputfield:hover {
+  border-radius: 10px;
+}
+.inputfield:focus {
+  border-color: #ff00b7;
+  border-radius: 10px;
+}
+
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+/* Top left text */
+.top {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+}
+.bottom {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  text-align: center;
+  color: rgb(235, 235, 235);
+}
+.buttonbottomlogin {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 40%);
+  text-align: center;
+}
+
+.buttonbottomsignup {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  text-align: center;
+}
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+.persionRtl {
+  direction: rtl;
+  color: #ffffff;
+}
+.pointer {
+  cursor: pointer;
+>>>>>>> Stashed changes
 }

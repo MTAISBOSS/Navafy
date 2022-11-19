@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.12",
+    "@mui/styled-engine-sc": "^5.10.6",
+    "formik": "^2.2.9",
+    "install": "^0.13.0",
+    "react-avatar-edit": "^1.2.0",
+    "react-formik-ui": "^5.7.1",
+    "react-router-dom": "^6.4.3",
+    "styled-components": "^5.3.6",
+    "yup": "^0.32.11"
+  }
+}
