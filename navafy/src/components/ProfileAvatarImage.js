@@ -4,6 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import img from "../Image/music-wallpaper.jpg";
 import Avatar from "react-avatar-edit";
 import MyButton from "./MyButton";
+import { Badge } from "@mui/material";
 
 const ProfileAvatarImage = () => {
   const [image, setimage] = useState("");
@@ -36,7 +37,7 @@ const ProfileAvatarImage = () => {
           height: "200px",
           borderRadius: "50%",
           objectFit: "cover",
-          border: "7px solid #ff25d7",
+          border: "7px solid #00cf2d",
         }}
         onClick={() => {
           setimagecrop(true);

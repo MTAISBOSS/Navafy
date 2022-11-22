@@ -20,9 +20,12 @@ function myTextfield(props) {
         type={props.type}
         label={props.text}
         variant={props.variant}
+        
         color={props.color}
         helperText={props.helperText}
-        autoComplete="on"
+        autoComplete="on" 
+        style={props.style}
+        hidden={props.hidden}
         sx={{
           "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
         }}

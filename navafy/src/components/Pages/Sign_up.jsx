@@ -59,20 +59,8 @@ const Sign_up = () => {
           className="logincontainer shadow panelbackground"
           direction="column"
         >
-          <Grid item xs={1}>
-            <h1
-              style={{
-                color: "#00cf2d",
-                textAlign: "right",
-                height: "80px",
-                fontSize: 20,
-                borderRadius: "0px",
-                margin:2
-              }}
-            >
-              نوافای
-            </h1>
-          </Grid>
+          <Grid item xs={1} />
+
           <Grid item xs={2}>
             <h1 style={titlestyles}>ساخت حساب کاربری</h1>
           </Grid>
@@ -191,7 +179,20 @@ const Sign_up = () => {
         </Grid>
       </Grid>
       <Grid className="center" item xs={4} container direction="column">
-        <Grid item xs={2} />
+        <Grid item xs={2}>
+          <h1
+            style={{
+              color: "#00cf2d",
+              textAlign: "right",
+              height: "80px",
+              fontSize: 20,
+              borderRadius: "0px",
+              margin: 2,
+            }}
+          >
+            نوافای
+          </h1>
+        </Grid>
         <Grid item xs={1}>
           <h1
             style={{

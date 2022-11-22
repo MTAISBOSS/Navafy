@@ -6,23 +6,13 @@
 
 html {
   font-family: "Vazirmatn", sans-serif;
-
-  direction: rtl;
   background-color: #2b2135;
-
-  /* background-repeat: no-repeat;
-  background-image: url("https://cdn.dribbble.com/users/736467/screenshots/5465876/blobs-longer.gif");
-  object-fit: cover;
-  background-repeat: no-repeat;
-  background-size: cover; */
 }
 body {
   margin: 0;
-  direction: rtl;
+  
 }
-div {
-  direction: rtl;
-}
+
 
 input {
   color: #d0d0d0;

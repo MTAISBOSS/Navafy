@@ -6,10 +6,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import background from "../../Image/polygon2.webp";
 import rightbackground from "../../Image/music-wallpaper.jpg";
-import { UserValid } from "../UserValidation";
 import { useFormik, validateYupSchema } from "formik";
 import { Grid } from "@mui/material";
 import Divider from "@mui/material/Divider";
+import * as yup from "yup";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,6 +18,22 @@ const Login = () => {
   const gotoHomePage = () => navigate("/");
 
   const [isDataValid, setIsDataValid] = useState(false);
+  const passwordRules = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
+
+  const UserValid = yup.object().shape({
+    name: yup
+      .string()
+      .min(3, "نام کاربری حداقل باید شامل سه حرف باشد")
+      .required("لطفا نام کاربری خود را وارد نمایید"),
+    password: yup
+      .string()
+      .min(8, "رمز عبور باید حداقل شامل 8 حرف باشد")
+      .matches(passwordRules, {
+        message: "رمز عبور باید شامل یک حرف و یک عدد باشد",
+      })
+      .required("لطفا رمز عبور خود را وارد نمایید"),
+  });
+
   const titlestyles = {
     color: "black",
     textAlign: "center",
@@ -54,20 +70,8 @@ const Login = () => {
     <Grid container xs={12} direction="row">
       <Grid className="center" item xs={4} container direction="column">
         {/* <img style={{ height: "100vh", width: "120vh" }} src={background} /> */}
-        <Grid item xs={2}>
-          <h1
-            style={{
-              color: "#00cf2d",
-              textAlign: "right",
-              height: "80px",
-              fontSize: 20,
-              borderRadius: "0px",
-              margin: 2,
-            }}
-          >
-            نوافای
-          </h1>
-        </Grid>
+        <Grid item xs={2} />
+
         <Grid item xs={1}>
           <h1
             style={{
@@ -121,7 +125,20 @@ const Login = () => {
           className="logincontainer shadow panelbackground"
           direction="column"
         >
-          <Grid item xs={1} />
+          <Grid item xs={1}>
+            <h1
+              style={{
+                color: "#00cf2d",
+                textAlign: "right",
+                height: "80px",
+                fontSize: 20,
+                borderRadius: "0px",
+                margin: 2,
+              }}
+            >
+              نوافای
+            </h1>
+          </Grid>
           <Grid item xs={2}>
             <h1 style={titlestyles}>ورود به حساب کاربری</h1>
           </Grid>
