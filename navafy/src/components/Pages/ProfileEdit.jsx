@@ -30,7 +30,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { Profile } from "./Pages/Profile";
+import { Profile } from "./Profile";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
@@ -122,7 +122,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function MyAppBar() {
+export default function ProfileEdit() {
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -313,6 +313,7 @@ export default function MyAppBar() {
       </Box>
       <Main style={{ backgroundColor: "white" }} open={open}>
         <DrawerHeader />
+        <Profile />
       </Main>
       <Drawer
         sx={{
