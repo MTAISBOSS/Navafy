@@ -20,10 +20,12 @@ function myTextfield(props) {
         type={props.type}
         label={props.text}
         variant={props.variant}
-        
+        onChange={props.onChange}
+        onBlur={props.onBlur}
+        value={props.value}
         color={props.color}
         helperText={props.helperText}
-        autoComplete="on" 
+        autoComplete="on"
         style={props.style}
         hidden={props.hidden}
         sx={{

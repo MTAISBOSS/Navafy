@@ -7,6 +7,7 @@ import Artist_Sign_up from "./components/Pages/Artist_Sign_Up";
 import Homepage from "./components/Pages/Homepage.js";
 import MyHomePage from "./components/AppBar";
 import ProfileEdit from "./components/Pages/ProfileEdit";
+import Playlist from "./components/Pages/PlayList";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/profile_edit" element={<ProfileEdit />} />
         <Route exact path="/signup" element={<Sign_up />} />
         <Route exact path="/artist_signup" element={<Artist_Sign_up />} />
+        <Route exact path="/my_music_library" element={<Playlist />} />
       </Routes>
     </BrowserRouter>
   );
