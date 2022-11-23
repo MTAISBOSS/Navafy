@@ -5,45 +5,34 @@
 }
 
 html {
-  font-family: Vasir;
-  direction: rtl;
-  background-repeat: no-repeat;
-  background-image: url("https://cdn.dribbble.com/users/736467/screenshots/5465876/blobs-longer.gif");
-  object-fit: cover;
-  background-repeat: no-repeat;
-  background-size: cover;
+  font-family: "Vazirmatn", sans-serif;
+  background-color: #2b2135;
 }
-
 body {
   margin: 0;
-  font-family: "Vazirmatn", sans-serif;
-  direction: rtl;
+  
 }
-div {
-  direction: rtl;
-}
+
+
 input {
-  color: #ffffff;
+  color: #d0d0d0;
 }
-.loginbackground {
-  background-image: url("https://cdn.dribbble.com/users/2410946/screenshots/6808682/lava_lamp_03.gif");
+
+.panelbackground {
+  /* background-image: url("https://cdn.dribbble.com/users/2410946/screenshots/6808682/lava_lamp_03.gif"); */
+  background-color: rgb(255, 255, 255);
 }
 .mybutton {
-  background-color: #ff25a8;
+  font-family: "Vazirmatn", sans-serif;
+  font-size: 15px;
   width: 100px;
   border: none;
   border-radius: 7px;
-  border-color: #ff25a8;
-  color: #fff;
   padding: 10px 25px;
   text-align: center;
-  font-size: 20px;
   cursor: pointer;
   transition: 0.3s;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
+
   display: block;
   text-decoration: none;
 }
@@ -51,11 +40,10 @@ input {
 .mybutton:hover {
   border-radius: 15px;
   width: 120px;
-
-  border-color: #ffffff;
-  color: #ffffff;
 }
-
+.mybutton:disabled {
+  opacity: 0.35;
+}
 .split {
   height: 100%;
   width: 50%;
@@ -74,30 +62,14 @@ input {
   right: 0;
 }
 
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.center {
   text-align: center;
 }
 .contentcenter {
   align-items: center;
   justify-content: center;
 }
-.container {
-  background-color: #ffffff;
-  width: 300px;
 
-  padding: 200px 200px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
-  display: block;
-}
 
 .shadow {
   -webkit-box-shadow: 0px 6px 15px -1px rgba(0, 0, 0, 0.4);
@@ -106,19 +78,13 @@ input {
   border-radius: 10px;
 }
 .logincontainer {
-  border-radius: 20px;
-  padding: 80px 100px;
+  text-align: center;
+  height: 100vh;
   width: 50%;
-  min-height: 60vh;
-  min-width: 50vh;
-  transition: 0.5s;
+  border-radius: 0%;
+  transition: 0.2s;
 }
-.logincontainer:hover {
-  padding: 80px 100px;
-  width: 55%;
-  min-height: 65vh;
-  min-width: 55vh;
-}
+
 .signupcontainer {
   border-radius: 20px;
   padding: 80px 120px;
@@ -134,13 +100,14 @@ input {
   min-width: 55vh;
 }
 .inputfield {
-  height: 45px;
-  padding: 10px 15px;
-  margin-bottom: 15px;
-  border-radius: 100px;
+  height: 30px;
+  padding: 20px 50px;
+  margin-bottom: 5px;
+  border-radius: 10px;
   border-color: #ff25a8;
   text-align: center;
-  font-size: 20px;
+  background: none;
+  font-size: 10px;
   transition: 0.3s;
 }
 
@@ -180,11 +147,19 @@ input {
   text-align: center;
   color: rgb(235, 235, 235);
 }
-.buttonbottom {
+.buttonbottomlogin {
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translate(-50%, 40%);
+  text-align: center;
+}
+
+.buttonbottomsignup {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0%);
   text-align: center;
 }
 /* Top right text */
@@ -206,4 +181,5 @@ input {
 }
 .pointer {
   cursor: pointer;
+
 }
