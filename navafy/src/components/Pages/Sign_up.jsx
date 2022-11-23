@@ -4,19 +4,52 @@ import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import background from "../../Image/b2.jfif";
-import { UserValid } from "../UserValidation";
 import { useFormik, validateYupSchema } from "formik";
 import { Grid } from "@mui/material";
 import Divider from "@mui/material/Divider";
+import axios from "axios";
+import * as yup from "yup";
+
+const signupUrl = "https://reqres.in/api/login";
 
 const Sign_up = () => {
-  const navigate = useNavigate();
+  const passwordRules = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
 
-  const [isDataValid, setIsDataValid] = useState(false);
+  const UserValid = yup.object().shape({
+    username: yup
+      .string()
+      .min(3, "نام کاربری حداقل باید شامل سه حرف باشد")
+      .required("لطفا نام کاربری خود را وارد نمایید"),
+    email: yup.string().email("لطفا ایمیل خود را درست وارد کنید").required("لطفا ایمیل خود را وارد کنید"),
+    password: yup
+      .string()
+      .min(8, "رمز عبور باید حداقل شامل 8 حرف باشد")
+      .matches(passwordRules, {
+        message: "رمز عبور باید شامل یک حرف و یک عدد باشد",
+      })
+      .required("لطفا رمز عبور خود را وارد نمایید"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "لطفا رمز را درست تایید کنید")
+      .required(),
+  });
+
+  const navigate = useNavigate();
 
   const gotoLoginPage = () => navigate("/login");
   const gotoHomePage = () => navigate("/");
   const gotoArtistSignUpPage = () => navigate("/artist_signup");
+
+  const onSubmit = (values, actions) => {
+    console.log("sign up");
+    axios
+      .post(signupUrl, {
+        username: values.username,
+        password: values.password,
+        email: values.email,
+      })
+      .then((res) => localStorage.setItem("token", res.data.token));
+  };
 
   const titlestyles = {
     color: "black",
@@ -27,9 +60,6 @@ const Sign_up = () => {
     borderRadius: "0px",
   };
 
-  const onSubmit = () => {
-    gotoHomePage();
-  };
   const {
     values,
     handleBlur,
@@ -40,14 +70,13 @@ const Sign_up = () => {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      name: "",
+      username: "",
       email: "",
       password: "",
-      confirmPassord: "",
+      confirmPassword: "",
     },
     validationSchema: UserValid,
     onSubmit,
-    canSubmit: UserValid,
   });
 
   return (
@@ -84,20 +113,20 @@ const Sign_up = () => {
                 <p style={{ fontSize: 12, color: "red" }}>{errors.email}</p>
               )}
               <MyTextfield
-                id="name"
+                id="username"
                 text="نام کاربری"
                 type="text"
-                name="name"
+                name="username"
                 style={{ width: 300, backgroundColor: "#e0eef2" }}
                 variant="outlined"
                 required
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.name && touched.name ? true : false}
-                value={values.name}
+                error={errors.username && touched.username ? true : false}
+                value={values.username}
               ></MyTextfield>
-              {errors.name && touched.name && (
-                <p style={{ fontSize: 12, color: "red" }}>{errors.name}</p>
+              {errors.username && touched.username && (
+                <p style={{ fontSize: 12, color: "red" }}>{errors.username}</p>
               )}
               <MyTextfield
                 id="password"
@@ -117,10 +146,10 @@ const Sign_up = () => {
                 <p style={{ fontSize: 12, color: "red" }}>{errors.password}</p>
               )}
               <MyTextfield
-                id="confirmPassord"
+                id="confirmPassword"
                 type="password"
                 text="تکرار رمز"
-                name="confirmPassord"
+                name="confirmPassword"
                 minLength={8}
                 required
                 style={{ width: 300, backgroundColor: "#e0eef2" }}
@@ -128,19 +157,18 @@ const Sign_up = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={
-                  errors.confirmPassord && touched.confirmPassord ? true : false
+                  errors.confirmPassword && touched.confirmPassword ? true : false
                 }
-                value={values.confirmPassord}
+                value={values.confirmPassword}
               ></MyTextfield>
-              {errors.confirmPassord && touched.confirmPassord && (
+              {errors.confirmPassword && touched.confirmPassword && (
                 <p style={{ fontSize: 12, color: "red" }}>
-                  {errors.confirmPassord}
+                  {errors.confirmPassword}
                 </p>
               )}
 
               <MyButton
                 btntext="ثبت نام"
-                disabled={isDataValid}
                 type="submit"
                 variant="contained"
                 style={{
@@ -157,7 +185,6 @@ const Sign_up = () => {
               />
               <MyButton
                 btntext="ثبت نام به عنوان آرتیست"
-                disabled={isDataValid}
                 onClick={() => {
                   gotoArtistSignUpPage();
                 }}
@@ -221,7 +248,6 @@ const Sign_up = () => {
         <Grid item xs={1}>
           <MyButton
             btntext="ورود"
-            disabled={isDataValid}
             variant="contained"
             onClick={() => {
               gotoLoginPage();

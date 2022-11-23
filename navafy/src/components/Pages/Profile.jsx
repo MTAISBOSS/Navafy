@@ -143,7 +143,7 @@ export const Profile = () => {
           <MyTextfield
             id="username"
             type="text"
-            text="تکرار رمز"
+            text="نام کاربری"
             name="username"
             required
             style={{ width: 300 }}

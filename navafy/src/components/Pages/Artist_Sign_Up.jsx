@@ -4,12 +4,38 @@ import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import background from "../../Image/b2.jfif";
-import { UserValid } from "../UserValidation";
 import { useFormik, validateYupSchema } from "formik";
 import { Grid } from "@mui/material";
 import Divider from "@mui/material/Divider";
+import * as yup from "yup";
+import axios from "axios";
+
+const signupUrl = "https://reqres.in/api/login";
 
 const Artist_Sign_up = () => {
+  const passwordRules = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
+
+  const UserValid = yup.object().shape({
+    name: yup
+      .string()
+      .min(3, "نام کاربری حداقل باید شامل سه حرف باشد")
+      .required("لطفا نام کاربری خود را وارد نمایید"),
+    email: yup
+      .string()
+      .email("لطفا ایمیل خود را درست وارد کنید")
+      .required("لطفا ایمیل خود را وارد کنید"),
+    password: yup
+      .string()
+      .min(8, "رمز عبور باید حداقل شامل 8 حرف باشد")
+      .matches(passwordRules, {
+        message: "رمز عبور باید شامل یک حرف و یک عدد باشد",
+      })
+      .required("لطفا رمز عبور خود را وارد نمایید"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "لطفا رمز را درست تایید کنید")
+      .required(),
+  });
   const navigate = useNavigate();
 
   const [isDataValid, setIsDataValid] = useState(false);
@@ -27,8 +53,15 @@ const Artist_Sign_up = () => {
     borderRadius: "0px",
   };
 
-  const onSubmit = () => {
-    gotoHomePage();
+  const onSubmit = (values, actions) => {
+    console.log("sign up");
+    axios
+      .post(signupUrl, {
+        name: values.name,
+        password: values.password,
+        email: values.email,
+      })
+      .then((res) => localStorage.setItem("token", res.data.token));
   };
   const {
     values,
@@ -47,7 +80,6 @@ const Artist_Sign_up = () => {
     },
     validationSchema: UserValid,
     onSubmit,
-    canSubmit: UserValid,
   });
 
   return (
@@ -128,13 +160,15 @@ const Artist_Sign_up = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={
-                  errors.confirmPassord && touched.confirmPassord ? true : false
+                  errors.confirmPassword && touched.confirmPassword
+                    ? true
+                    : false
                 }
-                value={values.confirmPassord}
+                value={values.confirmPassword}
               ></MyTextfield>
-              {errors.confirmPassord && touched.confirmPassord && (
+              {errors.confirmPassword && touched.confirmPassword && (
                 <p style={{ fontSize: 12, color: "red" }}>
-                  {errors.confirmPassord}
+                  {errors.confirmPassword}
                 </p>
               )}
 

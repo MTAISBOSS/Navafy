@@ -6,10 +6,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import background from "../../Image/polygon2.webp";
 import rightbackground from "../../Image/music-wallpaper.jpg";
-import { useFormik, validateYupSchema } from "formik";
+import { useFormik, validationSchema } from "formik";
 import { Grid } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import * as yup from "yup";
+import axios from "axios";
+
+const API_POST_NEW_RULE = "https://reqres.in/api/login";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,11 +20,10 @@ const Login = () => {
   const gotoSignUpPage = () => navigate("/signup");
   const gotoHomePage = () => navigate("/");
 
-  const [isDataValid, setIsDataValid] = useState(false);
   const passwordRules = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
 
   const UserValid = yup.object().shape({
-    name: yup
+    username: yup
       .string()
       .min(3, "نام کاربری حداقل باید شامل سه حرف باشد")
       .required("لطفا نام کاربری خود را وارد نمایید"),
@@ -43,27 +45,43 @@ const Login = () => {
     borderRadius: "0px",
   };
 
-  const onSubmit = () => {
-    gotoHomePage();
+  const onSubmit = (values, actions) => {
+    console.log("login");
+
+    axios
+      .post(API_POST_NEW_RULE, {
+        username: values.username,
+        password: values.password,
+      })
+      .then((res) => localStorage.setItem("token", res.data.token));
+    // axios({
+    //   method: "post",
+    //   url: API_POST_NEW_RULE,
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     Authorization: localStorage.getItem("user_token"),
+    //   },
+    //   params: {
+    //     u,
+    //   },
+    // });
   };
   const {
     values,
-    handleBlur,
     errors,
     touched,
     isSubmitting,
+    handleBlur,
     handleChange,
     handleSubmit,
   } = useFormik({
     initialValues: {
-      name: "",
-      email: "",
+      username: "",
       password: "",
-      confirmPassord: "",
     },
     validationSchema: UserValid,
     onSubmit,
-    canSubmit: UserValid,
   });
 
   return (
@@ -100,7 +118,6 @@ const Login = () => {
         <Grid item xs={1}>
           <MyButton
             btntext="ثبت نام"
-            disabled={isDataValid}
             variant="contained"
             onClick={() => {
               gotoSignUpPage();
@@ -145,23 +162,23 @@ const Login = () => {
           <Divider sx={{ backgroundColor: "#d0d0d0" }} />
 
           <Grid item xs={4}>
-            <form className="center" onSubmit={handleSubmit}>
+            <form className="center" autoComplete="off" onSubmit={handleSubmit}>
               <MyTextfield
-                id="name"
+                id="username"
                 text="نام کاربری"
                 type="text"
-                name="name"
+                name="username"
                 style={{ width: 300, backgroundColor: "#e0eef2", margin: 10 }}
                 variant="outlined"
                 required
                 color="primary"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.name && touched.name ? true : false}
-                value={values.name}
+                error={errors.username && touched.username ? true : false}
+                value={values.username}
               ></MyTextfield>
-              {errors.name && touched.name && (
-                <p style={{ fontSize: 12, color: "red" }}>{errors.name}</p>
+              {errors.username && touched.username && (
+                <p style={{ fontSize: 12, color: "red" }}>{errors.username}</p>
               )}
               <MyTextfield
                 id="password"
@@ -184,7 +201,6 @@ const Login = () => {
 
               <MyButton
                 btntext="ورود"
-                disabled={isDataValid}
                 type="submit"
                 variant="contained"
                 style={{

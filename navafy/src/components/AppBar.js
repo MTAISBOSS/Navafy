@@ -34,6 +34,7 @@ import { Profile } from "./Pages/Profile";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
+import MyButton from "./MyButton";
 
 const drawerWidth = 240;
 
@@ -131,6 +132,8 @@ export default function MyAppBar() {
   const gotoMakePlayListPage = () => navigate("/make_playlist");
   const gotoLikedMusicPage = () => navigate("/liked_music");
   const gotoProfileEditPage = () => navigate("/profile_edit");
+  const gotoSignUpPage = () => navigate("/signup");
+  const gotoLoginPage = () => navigate("/login");
 
 
   const [open, setOpen] = React.useState(false);
@@ -184,7 +187,13 @@ export default function MyAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem style={{ fontFamily: "Vazirmatn" }} onClick={()=>{handleMenuClose(); gotoProfileEditPage();}}>
+      <MenuItem
+        style={{ fontFamily: "Vazirmatn" }}
+        onClick={() => {
+          handleMenuClose();
+          gotoProfileEditPage();
+        }}
+      >
         پروفایل
       </MenuItem>
       <MenuItem style={{ fontFamily: "Vazirmatn" }} onClick={handleMenuClose}>
@@ -250,7 +259,7 @@ export default function MyAppBar() {
   );
 
   return (
-    <div >
+    <div>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
 
@@ -280,6 +289,38 @@ export default function MyAppBar() {
               نوافای
             </Typography>
 
+            <MyButton
+              btntext="ثبت نام"
+              onClick={()=>{gotoSignUpPage();}}
+              variant="contained"
+              style={{
+                marginLeft: 50,
+                backgroundColor: "#00cf2d",
+                color: "white",
+                fontWeight: "bold",
+                fontFamily: "Vazirmatn",
+                height: 30,
+                width: 80,
+                fontSize: 14,
+                borderRadius: 5,
+              }}
+            />
+            <MyButton
+              btntext="ورود"
+              onClick={()=>{gotoLoginPage();}}
+              variant="contained"
+              style={{
+                marginLeft: 20,
+                backgroundColor: "#00cf2d",
+                color: "white",
+                fontWeight: "bold",
+                fontFamily: "Vazirmatn",
+                height: 30,
+                width: 80,
+                fontSize: 14,
+                borderRadius: 5,
+              }}
+            />
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
@@ -431,7 +472,7 @@ export default function MyAppBar() {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <Search className="shadow pointer" style={{marginTop:20}}>
+            <Search className="shadow pointer" style={{ marginTop: 20 }}>
               <SearchIconWrapper className="pointer" onClick={handleSearch}>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -439,7 +480,6 @@ export default function MyAppBar() {
                 style={{
                   fontFamily: "Vazirmatn",
                   color: "grey",
-                  
                 }}
                 placeholder="...جستجو"
                 inputProps={{ "aria-label": "search" }}
