@@ -1,19 +1,18 @@
-import ContainedButtons from "./components/MyButton";
-import Login from "./components/Pages/Login";
+import Login from "./components/Pages/Login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Sign_up from "./components/Pages/Sign_up";
-import Artist_Sign_up from "./components/Pages/Artist_Sign_Up";
+import Sign_up from "./components/Pages/Sign Up/Sign_up";
+import Artist_Sign_up from "./components/Pages/Artist Sign Up/Artist_Sign_Up";
 
-import Homepage from "./components/Pages/Homepage.js";
-import MyHomePage from "./components/AppBar";
-import ProfileEdit from "./components/Pages/ProfileEdit";
-import Playlist from "./components/Pages/PlayList";
+import Homepage from "./components/Pages/Home Page/Homepage";
+import MyHomePage from "./components/Common/HomePage";
+import ProfileEdit from "./components/Pages/Profile Edit/ProfileEdit";
+import Playlist from "./components/Pages/Play list/PlayList";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Homepage />} />
+        <Route exact path="/" element={< MyHomePage />} />
         <Route exact path="/homepage" element={<MyHomePage />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/profile_edit" element={<ProfileEdit />} />
