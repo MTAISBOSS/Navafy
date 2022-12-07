@@ -9,6 +9,8 @@ import {
   DialogActions,
 } from "@mui/material";
 import { useState } from "react";
+import Login from "./components/Pages/Login";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export class Comment extends Component {
   constructor(props) {
@@ -33,9 +35,11 @@ export class Comment extends Component {
         </DialogActions>
       </Dialog>
     ) : (
-      <div>h3</div>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     );
   }
 }
-
-export default Comment;
