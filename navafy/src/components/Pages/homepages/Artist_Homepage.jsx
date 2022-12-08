@@ -1,11 +1,12 @@
 import { AddBox } from "@mui/icons-material";
 import { Box, Grid } from "@mui/material";
 import { Stack } from "@mui/system";
-import { CardRockNRoll } from "../../cards/CardRockNRoll";
-import { Card20s } from "../../cards/Card20s";
-import { Card2022 } from "../../cards/Card2022Popular";
-import { CardFocusMusic } from "../../cards/CardFocusMusic";
-import { CardClassic } from "../../cards/CardClassic";
+
+import { CardRockNRoll } from "../../../Assets/Image/cards/CardRockNRoll";
+import { Card20s } from "../../../Assets/Image/cards/Card20s";
+import { Card2022 } from "../../../Assets/Image/cards/Card2022Popular";
+import { CardFocusMusic } from "../../../Assets/Image/cards/CardFocusMusic";
+import { CardClassic } from "../../../Assets/Image/cards/CardClassic";
 import { red } from "@mui/material/colors";
 import { Navbar } from "../../Navbar";
 import React, { useState } from "react";

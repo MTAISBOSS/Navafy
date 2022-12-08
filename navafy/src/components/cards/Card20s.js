@@ -10,7 +10,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import SentimentSatisfiedTwoToneIcon from "@mui/icons-material/SentimentSatisfiedTwoTone";
 import MapsUgcIcon from "@mui/icons-material/MapsUgc";
 
-import { Comment } from "../../../Comment.js";
+import { Comment } from "../../Comment.js";
+
 import {
   Button,
   Dialog,
