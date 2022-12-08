@@ -1,23 +1,26 @@
 import { Component } from "react";
-import MyButton from "../MyButton";
-import MyTextfield from "../MyTextfield";
+import MyButton from "../../Common/MyButton";
+import MyTextfield from "../../Common/MyTextfield";
 import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "../../Image/polygon2.webp";
-import rightbackground from "../../Image/music-wallpaper.jpg";
-import { UserValid } from "../UserValidation";
-import { useFormik, validateYupSchema } from "formik";
+import { useFormik, validationSchema } from "formik";
 import { Grid } from "@mui/material";
-import Divider from "@mui/material/Divider";
+import * as yup from "yup";
+import axios from "axios";
+import * as DataContainer from "../../../Static/DataContainer"
+import { UserValid } from "./LoginFormValidation";
+const API_POST_NEW_RULE =  DataContainer.API_LOGIN;
+
 
 const Login = () => {
   const navigate = useNavigate();
 
+  
   const gotoSignUpPage = () => navigate("/signup");
   const gotoHomePage = () => navigate("/");
 
-  const [isDataValid, setIsDataValid] = useState(false);
+  
   const titlestyles = {
     color: "black",
     textAlign: "center",
@@ -27,47 +30,51 @@ const Login = () => {
     borderRadius: "0px",
   };
 
-  const onSubmit = () => {
-    gotoHomePage();
+  const onSubmit = (values, actions) => {
+    console.log("login");
+
+    axios
+      .post(API_POST_NEW_RULE, {
+        username: values.username,
+        password: values.password,
+      })
+      .then((res) => localStorage.setItem("token", res.data.token));
+    // axios({
+    //   method: "post",
+    //   url: API_POST_NEW_RULE,
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     Authorization: localStorage.getItem("user_token"),
+    //   },
+    //   params: {
+    //     u,
+    //   },
+    // });
   };
   const {
     values,
-    handleBlur,
     errors,
     touched,
     isSubmitting,
+    handleBlur,
     handleChange,
     handleSubmit,
   } = useFormik({
     initialValues: {
-      name: "",
-      email: "",
+      username: "",
       password: "",
-      confirmPassord: "",
     },
     validationSchema: UserValid,
     onSubmit,
-    canSubmit: UserValid,
   });
 
   return (
     <Grid container xs={12} direction="row">
       <Grid className="center" item xs={4} container direction="column">
         {/* <img style={{ height: "100vh", width: "120vh" }} src={background} /> */}
-        <Grid item xs={2}>
-          <h1
-            style={{
-              color: "#00cf2d",
-              textAlign: "right",
-              height: "80px",
-              fontSize: 20,
-              borderRadius: "0px",
-              margin: 2,
-            }}
-          >
-            نوافای
-          </h1>
-        </Grid>
+        <Grid item xs={2} />
+
         <Grid item xs={1}>
           <h1
             style={{
@@ -96,7 +103,6 @@ const Login = () => {
         <Grid item xs={1}>
           <MyButton
             btntext="ثبت نام"
-            disabled={isDataValid}
             variant="contained"
             onClick={() => {
               gotoSignUpPage();
@@ -118,33 +124,45 @@ const Login = () => {
         <Grid
           item
           container
-          className="logincontainer shadow panelbackground"
+          className="logincontainer whiteshadow panelbackground"
           direction="column"
         >
-          <Grid item xs={1} />
+          <Grid item xs={1}>
+            <h1
+              style={{
+                color: "#00cf2d",
+                textAlign: "right",
+                height: "80px",
+                fontSize: 20,
+                borderRadius: "0px",
+                margin: 2,
+              }}
+            >
+              نوافای
+            </h1>
+          </Grid>
           <Grid item xs={2}>
             <h1 style={titlestyles}>ورود به حساب کاربری</h1>
           </Grid>
-          <Divider sx={{ backgroundColor: "#d0d0d0" }} />
 
           <Grid item xs={4}>
-            <form className="center" onSubmit={handleSubmit}>
+            <form className="center" autoComplete="off" onSubmit={handleSubmit}>
               <MyTextfield
-                id="name"
+                id="username"
                 text="نام کاربری"
                 type="text"
-                name="name"
+                name="username"
                 style={{ width: 300, backgroundColor: "#e0eef2", margin: 10 }}
                 variant="outlined"
                 required
                 color="primary"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.name && touched.name ? true : false}
-                value={values.name}
+                error={errors.username && touched.username ? true : false}
+                value={values.username}
               ></MyTextfield>
-              {errors.name && touched.name && (
-                <p style={{ fontSize: 12, color: "red" }}>{errors.name}</p>
+              {errors.username && touched.username && (
+                <p style={{ fontSize: 12, color: "red" }}>{errors.username}</p>
               )}
               <MyTextfield
                 id="password"
@@ -167,7 +185,6 @@ const Login = () => {
 
               <MyButton
                 btntext="ورود"
-                disabled={isDataValid}
                 type="submit"
                 variant="contained"
                 style={{

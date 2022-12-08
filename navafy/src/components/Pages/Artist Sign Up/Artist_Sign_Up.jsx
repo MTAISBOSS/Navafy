@@ -1,22 +1,24 @@
-import MyButton from "../MyButton";
-import MyTextfield from "../MyTextfield";
+import MyButton from "../../Common/MyButton";
+import MyTextfield from "../../Common/MyTextfield";
 import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "../../Image/b2.jfif";
-import { UserValid } from "../UserValidation";
 import { useFormik, validateYupSchema } from "formik";
 import { Grid } from "@mui/material";
 import Divider from "@mui/material/Divider";
+import axios from "axios";
+import { UserValid } from "./ArtistSignUpValidation";
+const signupUrl = "https://reqres.in/api/login";
 
-const Sign_up = () => {
+const Artist_Sign_up = () => {
+  
   const navigate = useNavigate();
 
   const [isDataValid, setIsDataValid] = useState(false);
 
   const gotoLoginPage = () => navigate("/login");
   const gotoHomePage = () => navigate("/");
-  const gotoArtistSignUpPage = () => navigate("/artist_signup");
+  const gotoSignUpPage = () => navigate("/signup");
 
   const titlestyles = {
     color: "black",
@@ -27,8 +29,15 @@ const Sign_up = () => {
     borderRadius: "0px",
   };
 
-  const onSubmit = () => {
-    gotoHomePage();
+  const onSubmit = (values, actions) => {
+    console.log("sign up");
+    axios
+      .post(signupUrl, {
+        name: values.name,
+        password: values.password,
+        email: values.email,
+      })
+      .then((res) => localStorage.setItem("token", res.data.token));
   };
   const {
     values,
@@ -40,31 +49,30 @@ const Sign_up = () => {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      name: "",
+      username: "",
       email: "",
       password: "",
-      confirmPassord: "",
+      confirmPassword: "",
     },
     validationSchema: UserValid,
     onSubmit,
-    canSubmit: UserValid,
   });
 
   return (
     <Grid container xs={12} direction="row">
+      <Grid className="center" item xs={2} container direction="column"></Grid>
       <Grid className="center" item xs={8} container direction="column">
         <Grid
           item
           container
-          className="logincontainer shadow panelbackground"
+          className="logincontainer whiteshadow panelbackground"
           direction="column"
         >
           <Grid item xs={1} />
           <Grid item xs={2}>
-            <h1 style={titlestyles}>ساخت حساب کاربری</h1>
+            <h1 style={titlestyles}>ساخت حساب آرتیست</h1>
           </Grid>
-          <Divider sx={{ backgroundColor: "#d0d0d0" }} />
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <form className="center" onSubmit={handleSubmit}>
               <MyTextfield
                 id="email"
@@ -83,20 +91,20 @@ const Sign_up = () => {
                 <p style={{ fontSize: 12, color: "red" }}>{errors.email}</p>
               )}
               <MyTextfield
-                id="name"
+                id="username"
                 text="نام کاربری"
                 type="text"
-                name="name"
+                name="username"
                 style={{ width: 300, backgroundColor: "#e0eef2" }}
                 variant="outlined"
                 required
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.name && touched.name ? true : false}
-                value={values.name}
+                error={errors.username && touched.username ? true : false}
+                value={values.username}
               ></MyTextfield>
-              {errors.name && touched.name && (
-                <p style={{ fontSize: 12, color: "red" }}>{errors.name}</p>
+              {errors.username && touched.username && (
+                <p style={{ fontSize: 12, color: "red" }}>{errors.username}</p>
               )}
               <MyTextfield
                 id="password"
@@ -116,10 +124,10 @@ const Sign_up = () => {
                 <p style={{ fontSize: 12, color: "red" }}>{errors.password}</p>
               )}
               <MyTextfield
-                id="confirmPassord"
+                id="confirmPassword"
                 type="password"
                 text="تکرار رمز"
-                name="confirmPassord"
+                name="confirmPassword"
                 minLength={8}
                 required
                 style={{ width: 300, backgroundColor: "#e0eef2" }}
@@ -127,13 +135,15 @@ const Sign_up = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={
-                  errors.confirmPassord && touched.confirmPassord ? true : false
+                  errors.confirmPassword && touched.confirmPassword
+                    ? true
+                    : false
                 }
-                value={values.confirmPassord}
+                value={values.confirmPassword}
               ></MyTextfield>
-              {errors.confirmPassord && touched.confirmPassord && (
+              {errors.confirmPassword && touched.confirmPassword && (
                 <p style={{ fontSize: 12, color: "red" }}>
-                  {errors.confirmPassord}
+                  {errors.confirmPassword}
                 </p>
               )}
 
@@ -155,10 +165,10 @@ const Sign_up = () => {
                 }}
               />
               <MyButton
-                btntext="ثبت نام به عنوان آرتیست"
+                btntext="بازگشت"
                 disabled={isDataValid}
                 onClick={() => {
-                  gotoArtistSignUpPage();
+                  gotoSignUpPage();
                 }}
                 variant="contained"
                 style={{
@@ -168,8 +178,8 @@ const Sign_up = () => {
                   fontWeight: "bold",
                   fontFamily: "Vazirmatn",
                   height: 50,
-                  width: 250,
-                  fontSize: 18,
+                  width: 200,
+                  fontSize: 20,
                   borderRadius: 15,
                 }}
               />
@@ -177,56 +187,22 @@ const Sign_up = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid className="center" item xs={4} container direction="column">
-        <Grid item xs={2} />
-        <Grid item xs={1}>
-          <h1
-            style={{
-              color: "white",
-              textAlign: "center",
-              height: "80px",
-              fontSize: 50,
-              borderRadius: "0px",
-            }}
-          >
-            حساب کاربری دارید؟
-          </h1>
-          <h2
-            style={{
-              color: "white",
-              fontWeight: "normal",
-              textAlign: "center",
-              height: "80px",
-              fontSize: 15,
-              borderRadius: "0px",
-            }}
-          >
-            وارد حساب کاربری خود شوید و از قابلیت های سرویس ما استفاده کنید ...
-          </h2>
-        </Grid>
-        <Grid item xs={1}>
-          <MyButton
-            btntext="ورود"
-            disabled={isDataValid}
-            variant="contained"
-            onClick={() => {
-              gotoLoginPage();
-            }}
-            style={{
-              backgroundColor: "#00cf2d",
-              color: "white",
-              fontWeight: "bold",
-              fontFamily: "Vazirmatn",
-              height: 50,
-              width: 200,
-              fontSize: 20,
-              borderRadius: 15,
-            }}
-          />
-        </Grid>
+      <Grid className="center" item xs={2} container direction="column">
+        <h1
+          style={{
+            color: "#00cf2d",
+            textAlign: "right",
+            height: "80px",
+            fontSize: 20,
+            borderRadius: "0px",
+            margin: 2,
+          }}
+        >
+          نوافای
+        </h1>
       </Grid>
     </Grid>
   );
 };
 
-export default Sign_up;
+export default Artist_Sign_up;

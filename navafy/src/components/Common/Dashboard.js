@@ -6,7 +6,9 @@ import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
-export default function FadeMenu() {
+export default function Dashboard(props) {
+  const items = props.items;
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -41,10 +43,15 @@ export default function FadeMenu() {
           "& > :not(style)": { color: "#ff25d7", fontFamily: "Vazirmatn" },
         }}
       >
-        <MenuItem onClick={handleClose}>پروفایل</MenuItem>
-        <MenuItem onClick={handleClose}> آهنگ های من</MenuItem>
-        <MenuItem onClick={handleClose}>پلی لیست من</MenuItem>
-        <MenuItem onClick={handleClose}>خروج</MenuItem>
+        
+        {items.map((item) => (
+          <React.Fragment key={item}>
+            <MenuItem onClick={handleClose} style={{ fontFamily: "Vazirmatn" }}>
+              {item}
+            </MenuItem>
+          </React.Fragment>
+        ))}
+
       </Menu>
     </div>
   );

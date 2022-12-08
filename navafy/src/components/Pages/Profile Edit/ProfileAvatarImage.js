@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
-import MyTextfield from "./MyTextfield";
+import MyTextfield from "../../Common/MyTextfield";
 import Dialog from "@mui/material/Dialog";
-import img from "../Image/music-wallpaper.jpg";
+import img from "../../../Assets/Image/music-wallpaper.jpg";
 import Avatar from "react-avatar-edit";
-import MyButton from "./MyButton";
+import MyButton from "../../Common/MyButton";
 
 const ProfileAvatarImage = () => {
   const [image, setimage] = useState("");
@@ -36,7 +36,7 @@ const ProfileAvatarImage = () => {
           height: "200px",
           borderRadius: "50%",
           objectFit: "cover",
-          border: "7px solid #ff25d7",
+          border: "7px solid #00cf2d",
         }}
         onClick={() => {
           setimagecrop(true);
