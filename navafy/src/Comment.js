@@ -22,6 +22,7 @@ export class Comment extends Component {
   render() {
     return this.state.isLoggedIn ? (
       <Dialog
+        open={true}
         aria-labelledby="dialog-title"
         aria-describedby="dialog-description"
       >
@@ -35,11 +36,7 @@ export class Comment extends Component {
         </DialogActions>
       </Dialog>
     ) : (
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
+      <div>h</div>
     );
   }
 }

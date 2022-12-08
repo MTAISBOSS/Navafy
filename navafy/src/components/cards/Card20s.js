@@ -23,9 +23,16 @@ import {
 import { useState } from "react";
 
 export const Card20s = () => {
+  const [open, setOpen] = React.useState(false);
+
   const handleClickOpen = () => {
-    <Comment />;
+    setOpen(true);
   };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Card sx={{ maxWidth: 200 }}>
       <CardActionArea>
@@ -41,9 +48,12 @@ export const Card20s = () => {
           <FavoriteIcon />
         </IconButton>
 
-        <IconButton aria-label="like" onClick={() => Comment}>
+        <IconButton aria-label="like" onClick={handleClickOpen}>
           <SentimentSatisfiedTwoToneIcon />
+
+          <Comment open={open} onClose={handleClose} />
         </IconButton>
+
         <IconButton aria-label="comment">
           <MapsUgcIcon />
         </IconButton>

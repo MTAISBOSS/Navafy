@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Sign_up from "./components/Pages/Sign_up";
 import Artist_Sign_up from "./components/Pages/Artist_Sign_Up";
 
-import Homepage from "./components/Pages/homepages/Guest_Homepage.jsx";
+import Homepage from "./components/Pages/homepages/Artist_Homepage.jsx";
 
 function App() {
   return (
