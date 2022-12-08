@@ -27,9 +27,10 @@ function myTextfield(props) {
         helperText={props.helperText}
         autoComplete={props.autoComplete}
         placeholder={props.placeholder}
-        
+        size={props.size}
         style={props.style}
         hidden={props.hidden}
+        
         sx={{
           "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
         }}
