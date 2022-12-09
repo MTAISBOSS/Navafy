@@ -3,26 +3,11 @@ import MusicInfoContainer from "../../Common/MusicInfoContainer";
 import MyButton from "../../Common/MyButton";
 import Modal from "@mui/material/Modal";
 import "./Playlist.css";
+import HomePage from "../../Common/HomePage";
 import MyTextfield from "../../Common/MyTextfield";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-const PL = {
-  good: [
-    "time",
-    "past",
-    "gold",
-    "important",
-    "mind blowing",
-    "وقت ازاد",
-    "قدرت",
-    1,
-    2,
-    3,
-    4,
-    5,
-  ],
-  bad: ["sdf", "ewe"],
-};
+const PL = {};
 const show_musics = (props) => {
   const data = props.item;
   return (
@@ -52,10 +37,14 @@ const PlayList = () => {
   const handleClose = () => setOpen(false);
   const [playlist_items, setplaylist_items] = useState(PL);
   const [added_music, setadded_music] = useState([]);
-  const [new_pl_name, setnew_pl_name] = useState("asdasda");
-  const name='';
+  const [new_pl_name, setnew_pl_name] = useState("");
+  const [clicked_pl, setclicked_pl] = useState("");
+  const name = "";
   return (
     <>
+      <div style={{ height: "60px" }}>
+        <HomePage />
+      </div>
       <div className="PL_body">
         <div className="sidebar">
           <div className="first_row">
@@ -68,6 +57,7 @@ const PlayList = () => {
                 backgroundColor: "#00cf2d",
                 fontWeight: "bold",
                 fontFamily: "Vazirmatn",
+                color: "#cde6fe",
                 height: 75,
                 width: 135,
                 fontSize: 14,
@@ -90,6 +80,7 @@ const PlayList = () => {
                   onClick={() => {
                     setplaylist_musics(show_musics({ item }));
                     setisvisible(true);
+                    setclicked_pl(item);
                   }}
                 >
                   مشاهده جزئیات
@@ -108,6 +99,7 @@ const PlayList = () => {
               variant="text"
               style={{
                 color: "#cde6fe",
+
                 height: 50,
                 width: 30,
                 fontSize: 20,
@@ -118,8 +110,20 @@ const PlayList = () => {
             <MyButton
               btntext="حذف لیست پخش"
               variant="contained"
+              onClick={() => {
+                setplaylist_items((current) => {
+                  const copy = { ...current };
+                  console.log(copy);
+                  delete copy[clicked_pl];
+                  console.log(copy);
+                  return copy;
+                });
+                setclicked_pl("");
+                setisvisible(false);
+              }}
               style={{
                 backgroundColor: "#00cf2d",
+
                 fontFamily: "Vazirmatn",
                 marginLeft: 20,
                 height: 50,
@@ -127,6 +131,7 @@ const PlayList = () => {
                 fontSize: 14,
                 borderRadius: 10,
                 fontSize: 13,
+                color: "#cde6fe",
               }}
             />
             <MyButton
@@ -140,6 +145,7 @@ const PlayList = () => {
                 fontSize: 14,
                 borderRadius: 10,
                 fontSize: 13,
+                color: "#cde6fe",
               }}
             />
           </div>
@@ -161,7 +167,7 @@ const PlayList = () => {
               variant="text"
               style={{
                 color: "#cde6fe",
-                height: "20px",
+                height: "50px",
                 width: "10px",
                 fontSize: 20,
                 borderRadius: 10,
@@ -171,7 +177,9 @@ const PlayList = () => {
               id="playlist_name"
               text="نام پلی لیست"
               type="text"
-              onChange={(event)=>{setnew_pl_name(event.currentTarget.value)}}
+              onChange={(event) => {
+                setnew_pl_name(event.currentTarget.value);
+              }}
               name="playlist_name"
               style={{
                 width: 300,
@@ -221,6 +229,7 @@ const PlayList = () => {
                       height: 40,
                       margin: "20px",
                       borderRadius: "20px",
+                      color: "#cde6fe",
                     }}
                     btntext="افزودن"
                   />
@@ -257,6 +266,7 @@ const PlayList = () => {
                       height: 40,
                       margin: "20px",
                       borderRadius: "20px",
+                      color: "#cde6fe",
                     }}
                     btntext="حذف"
                   />
@@ -283,6 +293,7 @@ const PlayList = () => {
                 fontSize: 14,
                 borderRadius: 10,
                 fontSize: 13,
+                color: "#cde6fe",
               }}
             />
           </div>

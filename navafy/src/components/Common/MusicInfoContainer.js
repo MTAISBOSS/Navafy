@@ -3,7 +3,6 @@ import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
 import Picture from "../../Assets/Image/default_music_icon.jpg";
-import MyButton from "./MyButton";
 
 const MusicInfoContainer = (props) => {
   return (

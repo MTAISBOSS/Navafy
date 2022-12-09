@@ -4,7 +4,7 @@
 }
 .sidebar {
   width: 23%;
-  background-color: #110d15;
+  background-color: #1a1420;
   height: 100%;
   position: fixed;
   overflow: auto;
@@ -19,36 +19,27 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #6c5483; 
+  background: #6c5483;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background:#2a0949; 
+  background: #2a0949;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background:#21063a; 
+  background: #21063a;
 }
 .first_row {
   margin: 20px 0px;
 }
 .first_row span {
-  font-size: 50px;
-  margin: 0% 0% 0% 10%;
+  font-size: 60px;
+  margin: 0% 0% 0% 15%;
 
   height: 50px;
   width: 125px;
-}
-.first_row button {
-  background-color: #00cf2d;
-  height: 70px;
-  width: 125px;
-  border-radius: 10px;
-  font-size: 16px;
-  color: #cde6fe;
-  transition: 400ms;
 }
 .first_row button:hover {
   background-color: #51ff00;
@@ -174,15 +165,15 @@
   background-color: #2a2033;
   padding: 5px 0px;
 }
-.added_music{
+.added_music {
   transition: 400ms;
   overflow: auto;
   border-radius: 10px;
   padding: 10px;
 }
-.added_musics{
+.added_musics {
   background-color: #3c2e49;
-  margin:40px 20px;
+  margin: 40px 20px;
   border-radius: 10px;
-  min-height:550px ;
+  min-height: 550px;
 }
