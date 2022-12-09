@@ -6,19 +6,28 @@ import "./Playlist.css";
 import MyTextfield from "../../Common/MyTextfield";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import Homepage from "../../Common/HomePage";
-
-const this_Songs = {
-  this: ["this1", "this2", "this3", "this4"],
-  thy: ["thy1", "thy2", "thy3", "thy4"],
-  1: ["wh1", "wh2", "wh3", "wh4"],
+const PL = {
+  good: [
+    "time",
+    "past",
+    "gold",
+    "important",
+    "mind blowing",
+    "وقت ازاد",
+    "قدرت",
+    1,
+    2,
+    3,
+    4,
+    5,
+  ],
+  bad: ["sdf", "ewe"],
 };
-const printing = (props) => {
+const show_musics = (props) => {
   const data = props.item;
-  console.log(data);
   return (
     <div className="musics">
-      {this_Songs[data].map((song) => (
+      {PL[data].map((song) => (
         <div className="music">
           <MusicInfoContainer
             width="60%"
@@ -34,161 +43,180 @@ const printing = (props) => {
     </div>
   );
 };
+
 const PlayList = () => {
   const [playlist_musics, setplaylist_musics] = useState("");
   const [isvisible, setisvisible] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [playlist_items,setplaylist_items] = useState(["this", "thy", "wh", 1, 2, 3, 4, 5, 6, 7]);
-  const [btnclicked, setbtnclicked] = useState({});
+  const [playlist_items, setplaylist_items] = useState(PL);
+  const [added_music, setadded_music] = useState([]);
+  const [new_pl_name, setnew_pl_name] = useState("asdasda");
+  const name='';
   return (
     <>
-    <div className="PL_body">
-      <div className="sidebar">
-        <div className="first_row">
-          <span>لیست پخش</span>
-          <MyButton
-            btntext="لیست پخش جدید"
-            onClick={handleOpen}
-            variant="contained"
-            style={{
-              backgroundColor: "#00cf2d",
-              fontWeight: "bold",
-              fontFamily: "Vazirmatn",
-              height: 75,
-              width: 135,
-              fontSize: 14,
-              borderRadius: 10,
-              fontSize: 13,
-            }}
-          />
-        </div>
-        <div id="added_playlists">
-          {playlist_items.map((item) => (
-            <div className="playlist_card ">
-              <MusicInfoContainer
-                name={item}
-                Space="4"
-                Size="75px"
-                Font_name="25px"
-                Font_description="17px"
-              />
-              <button
-                onClick={() => {
-                  setplaylist_musics(printing({ item }));
-                  setisvisible(true);
-                }}
-              >
-                مشاهده جزئیات
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div id="mainbar" style={{ display: isvisible ? "block" : "none" }}>
-        <div className="top_bar">
-          <MyButton
-            btntext="X"
-            onClick={() => {
-              setisvisible(false);
-            }}
-            variant="text"
-            style={{
-              color: "#cde6fe",
-              height: 50,
-              width: 30,
-              fontSize: 20,
-            }}
-          />
-        </div>
-        <div className="options">
-          <MyButton
-            btntext="حذف لیست پخش"
-            variant="contained"
-            style={{
-              backgroundColor: "#00cf2d",
-              fontFamily: "Vazirmatn",
-              marginLeft: 20,
-              height: 50,
-              width: 140,
-              fontSize: 14,
-              borderRadius: 10,
-              fontSize: 13,
-            }}
-          />
-          <MyButton
-            btntext="ویرایش"
-            variant="contained"
-            style={{
-              backgroundColor: "#00cf2d",
-              fontFamily: "Vazirmatn",
-              height: 50,
-              width: 140,
-              fontSize: 14,
-              borderRadius: 10,
-              fontSize: 13,
-            }}
-          />
-        </div>
-        {/*place to show the musics*/}
-        {playlist_musics}
-      </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <div className="create_playlist">
-          <MyButton
-            btntext="X"
-            onClick={handleClose}
-            variant="text"
-            style={{
-              color: "#cde6fe",
-              height: 35,
-              fontSize: 20,
-              borderRadius: 10,
-            }}
-          />
-          <MyTextfield
-            id="playlist_name"
-            text="نام پلی لیست"
-            type="text"
-            name="playlist_name"
-            style={{
-              width: 300,
-              backgroundColor: "#3c2e49",
-              margin: 10,
-              borderRadius: 10,
-              marginLeft: "58%",
-              marginTop: 30,
-            }}
-            variant="outlined"
-            required
-          />
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={musics}
-            sx={{ width: 300 }}
-            renderOption={(option, { selected }) => (
-              <div className="music_component">
+      <div className="PL_body">
+        <div className="sidebar">
+          <div className="first_row">
+            <span>لیست پخش</span>
+            <MyButton
+              btntext="لیست پخش جدید"
+              onClick={handleOpen}
+              variant="contained"
+              style={{
+                backgroundColor: "#00cf2d",
+                fontWeight: "bold",
+                fontFamily: "Vazirmatn",
+                height: 75,
+                width: 135,
+                fontSize: 14,
+                borderRadius: 10,
+                fontSize: 13,
+              }}
+            />
+          </div>
+          <div id="added_playlists">
+            {Object.keys(playlist_items).map((item) => (
+              <div className="playlist_card ">
                 <MusicInfoContainer
-                  name={option.key}
-                  Space={1}
-                  padding="20px"
-                  onClick={() => {
-                    console.log(option.key);
-                  }}
-                  Size="50px"
+                  name={item}
+                  Space="4"
+                  Size="75px"
+                  Font_name="25px"
+                  Font_description="17px"
                 />
+                <button
+                  onClick={() => {
+                    setplaylist_musics(show_musics({ item }));
+                    setisvisible(true);
+                  }}
+                >
+                  مشاهده جزئیات
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div id="mainbar" style={{ display: isvisible ? "block" : "none" }}>
+          <div className="top_bar">
+            <MyButton
+              btntext="X"
+              onClick={() => {
+                setisvisible(false);
+              }}
+              variant="text"
+              style={{
+                color: "#cde6fe",
+                height: 50,
+                width: 30,
+                fontSize: 20,
+              }}
+            />
+          </div>
+          <div className="options">
+            <MyButton
+              btntext="حذف لیست پخش"
+              variant="contained"
+              style={{
+                backgroundColor: "#00cf2d",
+                fontFamily: "Vazirmatn",
+                marginLeft: 20,
+                height: 50,
+                width: 140,
+                fontSize: 14,
+                borderRadius: 10,
+                fontSize: 13,
+              }}
+            />
+            <MyButton
+              btntext="ویرایش"
+              variant="contained"
+              style={{
+                backgroundColor: "#00cf2d",
+                fontFamily: "Vazirmatn",
+                height: 50,
+                width: 140,
+                fontSize: 14,
+                borderRadius: 10,
+                fontSize: 13,
+              }}
+            />
+          </div>
+          {/*place to show the musics*/}
+          {playlist_musics}
+        </div>
+        <Modal
+          open={open}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <div className="create_playlist">
+            <MyButton
+              btntext="X"
+              onClick={() => {
+                handleClose();
+                setadded_music([]);
+              }}
+              variant="text"
+              style={{
+                color: "#cde6fe",
+                height: "20px",
+                width: "10px",
+                fontSize: 20,
+                borderRadius: 10,
+              }}
+            />
+            <MyTextfield
+              id="playlist_name"
+              text="نام پلی لیست"
+              type="text"
+              onChange={(event)=>{setnew_pl_name(event.currentTarget.value)}}
+              name="playlist_name"
+              style={{
+                width: 300,
+                backgroundColor: "#2a2033",
+                margin: 10,
+                borderRadius: 10,
+                marginLeft: "58%",
+                marginTop: 30,
+              }}
+              variant="outlined"
+              required
+            />
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={musics}
+              style={{
+                width: "80%",
+                marginLeft: "10%",
+                marginTop: "2%",
+                backgroundColor: "#2a2033",
+                borderRadius: "10px",
+              }}
+              renderOption={(option, { selected }) => (
+                <div className="music_component">
+                  <MusicInfoContainer
+                    name={option.key}
+                    Space={1}
+                    padding="20px"
+                    onClick={() => {
+                      setadded_music((current) => [
+                        ...new Set([...current, option.key]),
+                      ]);
+                    }}
+                    Size="50px"
+                  />
                   <MyButton
                     variant="contained"
+                    onClick={() => {
+                      setadded_music((current) => [
+                        ...new Set([...current, option.key]),
+                      ]);
+                    }}
                     style={{
                       backgroundColor: "#5b268b",
-                      transition: "400ms",
                       width: 20,
                       height: 40,
                       margin: "20px",
@@ -196,22 +224,70 @@ const PlayList = () => {
                     }}
                     btntext="افزودن"
                   />
-              </div>
-            )}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                TextField
-                id="filled-basic"
-                label="آهنگ مورد نظر"
-                variant="filled"
-                sx={{ width: "300%", marginLeft: 3, marginTop: 4 }}
-              />
-            )}
-          />
-        </div>
-      </Modal>
-    </div>
+                </div>
+              )}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  id="filled-basic"
+                  label="آهنگ مورد نظر"
+                  variant="filled"
+                />
+              )}
+            />
+            <div className="added_musics">
+              {added_music.map((music) => (
+                <div className="music_component">
+                  <MusicInfoContainer
+                    name={music}
+                    Space={1}
+                    padding="20px"
+                    Size="50px"
+                  />
+                  <MyButton
+                    variant="contained"
+                    onClick={() => {
+                      setadded_music((current) =>
+                        current.filter((musics) => musics !== music)
+                      );
+                    }}
+                    style={{
+                      backgroundColor: "#5b268b",
+                      width: 20,
+                      height: 40,
+                      margin: "20px",
+                      borderRadius: "20px",
+                    }}
+                    btntext="حذف"
+                  />
+                </div>
+              ))}
+            </div>
+            <MyButton
+              btntext="ساخت لیست پخش"
+              variant="contained"
+              onClick={() => {
+                PL[new_pl_name] = added_music;
+                setplaylist_items(PL);
+                console.log(playlist_items);
+                setadded_music([]);
+                setnew_pl_name("");
+                handleClose();
+              }}
+              style={{
+                backgroundColor: "#00cf2d",
+                fontFamily: "Vazirmatn",
+                marginLeft: "20px",
+                height: 50,
+                width: 140,
+                fontSize: 14,
+                borderRadius: 10,
+                fontSize: 13,
+              }}
+            />
+          </div>
+        </Modal>
+      </div>
     </>
   );
 };
@@ -247,7 +323,7 @@ const musics = [
   },
   { label: "One Flew Over the Cuckoo's Nest", year: 1975 },
   { label: "Goodfellas", year: 1990 },
-  { label: "The Matrix", year: 1999 },
+  { label: "سلام", year: 1999 },
   { label: "Seven Samurai", year: 1954 },
   {
     label: "Star Wars: Episode IV - A New Hope",

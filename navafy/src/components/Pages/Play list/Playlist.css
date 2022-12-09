@@ -102,14 +102,14 @@
 }
 .create_playlist {
   background-color: #3c2e49;
-  width: 200px;
-  height: 200px;
+  width: 1000px;
+  height: 930px;
   margin: auto;
   margin-top: 30px;
-  width: 50%;
-  height: 90%;
   border-radius: 10px;
   margin-bottom: 100px;
+  padding-bottom: 20px;
+  overflow: auto;
 }
 .playlist_card {
   display: flex;
@@ -165,10 +165,24 @@
 }
 .music_component {
   display: flex;
+  direction: ltr;
   background-color: #1a1420;
   transition: 400ms;
+  overflow: auto;
 }
 .music_component:hover {
   background-color: #2a2033;
   padding: 5px 0px;
+}
+.added_music{
+  transition: 400ms;
+  overflow: auto;
+  border-radius: 10px;
+  padding: 10px;
+}
+.added_musics{
+  background-color: #3c2e49;
+  margin:40px 20px;
+  border-radius: 10px;
+  min-height:550px ;
 }
