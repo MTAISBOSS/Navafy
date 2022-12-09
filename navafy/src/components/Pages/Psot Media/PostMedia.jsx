@@ -7,8 +7,9 @@ import SingerAvatar from "@mui/icons-material/MusicNoteRounded";
 import IconButton from "@mui/material/IconButton";
 import Fab from "@mui/material/Fab";
 import PlayIcon from "@mui/icons-material/PlayArrowRounded";
-import LikeIcon from "@mui/icons-material/FavoriteBorder";
-import ShareIcon from "@mui/icons-material/Share";
+import LikeIcon from "@mui/icons-material/FavoriteSharp";
+import PostMediaIcon from "@mui/icons-material/Add";
+import SpeedDial from "../../Common/SpeedDial";
 
 const PostMediaPage = (props) => {
   return (
@@ -72,17 +73,30 @@ const PostMediaPage = (props) => {
             style={{ marginRight: 30, backgroundColor: "#00cf2d" }}
             aria-label="edit"
           >
-            <PlayIcon style={{fill:"white",height: 30, width: 30}}  />
+            <PlayIcon style={{ fill: "white", height: 30, width: 30 }} />
+          </Fab>
+
+          <Fab
+            style={{ marginRight: 30, backgroundColor: "#00cf2d" }}
+            aria-label="edit"
+          >
+            <LikeIcon
+              style={{
+                fill: "white",
+                height: 25,
+                width: 25,
+              }}
+            />
+          </Fab>
+
+          <Fab
+            style={{ marginRight: 30, backgroundColor: "#00cf2d" }}
+            aria-label="edit"
+          >
+            <PostMediaIcon style={{ fill: "white", height: 45, width: 40 }} />
           </Fab>
           <IconButton>
-            <LikeIcon
-              style={{ marginRight: 20, fill: "white", height: 45, width: 40 }}
-            />
-          </IconButton>
-          <IconButton>
-            <ShareIcon
-              style={{ marginRight: 20, fill: "white", height: 45, width: 40 }}
-            />
+            <SpeedDial style={{margin:-15,marginRight:20}} />
           </IconButton>
         </Grid>
       </Grid>

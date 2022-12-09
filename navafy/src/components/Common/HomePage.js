@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useLocation } from "react-router-dom";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
@@ -37,6 +38,8 @@ import MyAutoComplete from "../Common/AutoComplete";
 import FollowUnfollowContainer from "./FollowUnfollowContainer";
 import PostMediaPage from "../Pages/Psot Media/PostMedia";
 import PostMediaPopUp from "./PostMedia";
+import ProfileEdit from "../Pages/Profile Edit/ProfileEdit";
+import { Profile } from "../Pages/Profile Edit/Profile";
 
 const drawerWidth = 240;
 
@@ -88,6 +91,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function MyAppBar() {
   const theme = useTheme();
   const navigate = useNavigate();
+
+  const location = useLocation();
 
   const gotoHomePage = () => navigate("/homepage");
   const gotoLibraryPage = () => navigate("/my_music_library");
@@ -461,9 +466,8 @@ export default function MyAppBar() {
         </Drawer>
         <Main open={open}>
           <DrawerHeader />
-          {/* <PostMediaPage musicName="Blinding Lights" singer="The Weekend"/> */}
-          <PostMediaPopUp musicName="Blinding Lights" singer="The Weekend" />
-          {/* Contents should be here */}
+          <PostMediaPage musicName="Blinding Lights" singer="The Weekend"/>
+
         </Main>
       </Box>
     </body>

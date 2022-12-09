@@ -19,15 +19,25 @@ const Sign_up = () => {
   const gotoHomePage = () => navigate("/");
   const gotoArtistSignUpPage = () => navigate("/artist_signup");
 
-  const onSubmit = (values, actions) => {
-    console.log("sign up");
-    axios
-      .post(signupUrl, {
+  const onSubmit = (values) => {
+    console.log("signup");
+
+  
+    axios({
+      method: "post",
+      url: signupUrl,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("user_token"),
+      },
+      params: {
+        email: values.email,
         username: values.username,
         password: values.password,
-        email: values.email,
-      })
-      .then((res) => localStorage.setItem("token", res.data.token));
+        re_password: values.confirmPassword,
+      },
+    });
   };
 
   const titlestyles = {
