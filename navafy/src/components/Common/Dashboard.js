@@ -5,17 +5,20 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard(props) {
   const items = props.items;
+  const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (e) => {
     setAnchorEl(null);
+    navigate(e.currentTarget.route);
   };
 
   return (
@@ -43,15 +46,19 @@ export default function Dashboard(props) {
           "& > :not(style)": { color: "#ff25d7", fontFamily: "Vazirmatn" },
         }}
       >
-        
         {items.map((item) => (
           <React.Fragment key={item}>
-            <MenuItem onClick={handleClose} style={{ fontFamily: "Vazirmatn" }}>
+            <MenuItem
+              route={item.route}
+              onClick={(e) => {
+                handleClose(e);
+              }}
+              style={{ fontFamily: "Vazirmatn" }}
+            >
               {item}
             </MenuItem>
           </React.Fragment>
         ))}
-
       </Menu>
     </div>
   );
