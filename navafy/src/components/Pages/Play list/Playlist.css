@@ -1,137 +1,195 @@
-* {
-    box-sizing: border-box;
+.PL_body {
+  font-family: "Vazirmatn", sans-serif;
+  color: #cde6fe;
+  direction: rtl;
+}
+.sidebar {
+  width: 23%;
+  background-color: #1a1420;
+  height: 92%;
+  position: fixed;
+  overflow: auto;
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
 
-  }
-html{
-    font-family: "Vazirmatn", sans-serif;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #6c5483;
 }
-body{
-    background-color: #2b2135;
 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2a0949;
 }
-  
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-.row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  [class*="col-"] {
-    float: left;
-    padding: 15px;
-  }
-.sidebar button{
-    padding: 1%;
-    margin: 0 42%;
-    width: 100px;
-    height: 40px;
-    font-size: large;
-    transition: all ease-in-out 0.3s;
-    border-radius: 10px;
-    border: none;
-    background-color: rgb(110, 110, 110);
-    color: rgb(231, 231, 231);
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #21063a;
 }
-.sidebar button:hover{
-    background-color: black;
-    color: white;
-    border : none;
+.first_row {
+  margin: 20px 0px;
 }
-.sidebar{
-    background-color: rgb(59, 59, 59);
-    padding-bottom: 100%;
+.first_row span {
+  font-size: 2.6rem;
+  margin: 0% 0% 0% 17%;
+
+  height: 50px;
+  width: 125px;
 }
-.sidebar ul li:hover{
-    background-color: black;
-    color: white;
+.first_row button:hover {
+  background-color: #51ff00;
+  height: 80px;
+  width: 130px;
 }
-.musics
-{
-    padding : 1%;
-    margin : 4% 2%;
-    width: 96%;
-    height : 800px;
-    /* background-color: black; */
-    border: 2px black solid;
-    border-radius: 10px;
+.first_row button:active {
+  transition: 100ms;
+  background-color: #5f3982;
 }
-.toolbar
-{
-    width: 100%;
-    height:80px;
-    background-color: gray;
-    border-radius: 5px;
+#mainbar {
+  width: 77%;
+  background-color: #2b2135;
+  margin-right: 23%;
+  height: 100%;
 }
-.shuffleplay
-{
-    background-color: rgb(100, 100, 100);
-    color : white;
-    padding : 2%;
-    margin : 0.35% 1%;
-    transition: all ease-in-out 0.3s;
-    border-radius: 5px;
+#added_playlist {
+  display: flex;
+  flex-direction: column;
+  position: static;
 }
-.orderplay
-{
-    background-color: rgb(100, 100, 100);
-    color : white;
-    padding : 2%;
-    margin : 0.35% 0;
-    margin-right: 1055px;
-    transition: all ease-in-out 0.3s;
-    border-radius: 5px;
+/* #added_playlists button {
+  color: #cde6fe;
+  width: 96%;
+  padding: 20px;
+  margin: 5px 5px;
+  font-size: 26px;
+  background-color: #00cf2d;
+  border-radius: 10px;
+  transition: 400ms;
+  transition-timing-function: ease;
 }
-.orderplay:hover{
-    color: black;
-    background-color: white;
+#added_playlists button:hover {
+  background-color: #51ff00;
+  padding: 25px;
+  cursor: pointer;
 }
-.shuffleplay:hover{
-    color: black;
-    background-color: white;
+#added_playlists button:focus {
+  padding: 30px;
+  background-color: #5f3982;
+} */
+.top_bar {
+  background-color: #1a1420;
+  direction: ltr;
+  height: 20%;
+  width: 100%;
 }
-.notselected{
-    list-style: none;
-    background-color: rgb(110, 110, 110);
-    color: rgb(231, 231, 231);
-    padding: 2% 5%;
-    margin: 3% 0;
-    border-radius: 10px;
-    transition: all ease-in-out 0.3s;
+.options {
+  padding: 40px 7px 30px;
+  margin-bottom: 20px;
 }
-.selected{
-    list-style: none;
-    background-color: rgb(194, 0, 0);
-    color: rgb(231, 231, 231);
-    padding: 2% 5%;
-    margin: 3% 0;
-    border-radius: 10px;
-    transition: all ease-in-out 0.3s;
+.create_playlist {
+  background-color: #3c2e49;
+  width: 60%;
+  height: 93%;
+  margin: auto;
+  margin-top: 30px;
+  border-radius: 10px;
+  margin-bottom: 100px;
+  padding-bottom: 20px;
+  overflow: auto;
 }
-.musics ul li {
-    list-style: none;
-    background-color: rgb(65, 65, 65);
-    color: #fff;
-    padding: 2% 5%;
-    margin: 3% 0;
-    border-radius: 10px;
-    transition: all ease-in-out 0.3s;
+.playlist_card {
+  display: flex;
+  direction: rtl;
+  color: #cde6fe;
+  height: 80px;
+  width: 96%;
+  margin: 8px 5px;
+  font-size: 26px;
+  background-color: #6c5483;
+  border-radius: 10px;
+  transition: 400ms;
+  transition-timing-function: ease;
+  padding-right: 2%;
 }
-.musics ul li:hover{
-    background-color: black;
-    color: white;
+.playlist_card Button {
+  font-size: 15px;
+  width: 30%;
+  height: 60%;
+  background-color: #472764;
+  margin: 15px;
+  border: none;
+  border-radius: 10px;
+  transition: 400ms;
+  color: #cde6fe;
 }
-.back{
-    background-color: blue;
+.playlist_card:hover {
+  background-color: #513a66;
+  padding: 1.5%;
+  height: 90px;
+}
+.playlist_card button:hover {
+  background-color: #5b268b;
+  cursor: pointer;
+}
+.playlist_card button:focus.playlist_card {
+  background-color: #513a66;
+  padding: 3%;
+  height: 90px;
+  cursor: pointer;
+}
+.music {
+  background-color: #3e304d;
+  margin: 10px 10px;
+  padding-right: 2%;
+  border-radius: 10px;
+  transition: 400ms;
+}
+.music:hover {
+  background-color: #342642;
+  margin: 10px 10px;
+  padding-right: 3%;
+  border-radius: 10px;
+}
+.music_component {
+  display: flex;
+  direction: rtl;
+  background-color: #1a1420;
+  transition: 400ms;
+  overflow: auto;
+  padding-right: 1%;
+}
+.music_component:hover {
+  background-color: #2a2033;
+  padding: 5px 0px;
+  padding-right: 1%;
+}
+.added_music {
+  transition: 400ms;
+  overflow: auto;
+  border-radius: 10px;
+  padding: 10px;
+}
+.added_musics {
+  background-color: #3c2e49;
+  background-color:"#633295";
+  margin: 40px 20px;
+  border-radius: 10px;
+  min-height: 45%;
+  padding :1% 0%;
+}
+.music_component_added{
+  display: flex;
+  direction: rtl;
+  margin:2%;
+  border: none;
+  border-radius: 10px;
+  background-color: #1a1420;
+  transition: 400ms;
+  overflow: auto;
+  padding-right: 1%;
 }
