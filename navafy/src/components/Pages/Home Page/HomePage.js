@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useLocation } from "react-router-dom";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
@@ -28,24 +29,17 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
 import { useNavigate } from "react-router-dom";
-import MyButton from "../../Common/MyButton";
-import Search from "../../Common/Search";
-import FadeMenu from "../../Common/ContextMenu";
+import MyButton from "./MyButton";
+import Search from "./Search";
+import FadeMenu from "./ContextMenu";
 import { Grid } from "@mui/material";
-import Dashboard from "../../Common/Dashboard";
-
-import { AddBox } from "@mui/icons-material";
-import { Stack } from "@mui/system";
-
-import { CardRockNRoll } from "./cards/CardRockNRoll";
-import { Card20s } from "./cards/Card20s";
-import { Card2022 } from "./cards/Card2022Popular";
-import { CardFocusMusic } from "./cards/CardFocusMusic";
-import { CardClassic } from "./cards/CardClassic";
-import { red } from "@mui/material/colors";
-import { Navbar } from "../../Navbar";
-import Carousel from "react-bootstrap/Carousel";
-import homepage from "../homepages/Artist_Homepage";
+import Dashboard from "./Dashboard";
+import MyAutoComplete from "../Common/AutoComplete";
+import FollowUnfollowContainer from "./FollowUnfollowContainer";
+import PostMediaPage from "../Pages/Psot Media/PostMedia";
+import PostMediaPopUp from "./PostMedia";
+import ProfileEdit from "../Pages/Profile Edit/ProfileEdit";
+import { Profile } from "../Pages/Profile Edit/Profile";
 
 const drawerWidth = 240;
 
@@ -98,6 +92,8 @@ export default function MyAppBar() {
   const theme = useTheme();
   const navigate = useNavigate();
 
+  const location = useLocation();
+
   const gotoHomePage = () => navigate("/homepage");
   const gotoLibraryPage = () => navigate("/my_music_library");
   const gotoMakePlayListPage = () => navigate("/make_playlist");
@@ -108,6 +104,8 @@ export default function MyAppBar() {
 
   const [homepageContent, sethomepageContent] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [hasLogined, sethasLogined] = React.useState(false);
+  const [hasSignedUp, sethasSignedUp] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -144,7 +142,6 @@ export default function MyAppBar() {
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
-      dir="rtl"
       anchorEl={anchorEl}
       anchorOrigin={{
         vertical: "top",
@@ -260,6 +257,7 @@ export default function MyAppBar() {
               نوافای
             </Typography>
             <MyButton
+              disabled={hasSignedUp}
               btntext="ثبت نام"
               onClick={() => {
                 gotoSignUpPage();
@@ -278,6 +276,7 @@ export default function MyAppBar() {
               }}
             />
             <MyButton
+              disabled={hasLogined}
               btntext="ورود"
               onClick={() => {
                 gotoLoginPage();
@@ -295,7 +294,16 @@ export default function MyAppBar() {
                 borderRadius: 5,
               }}
             />
-
+            <Search
+              style={{
+                borderRadius: "none",
+                width: 300,
+                height: 40,
+                marginLeft: 250,
+                backgroundColor: "white",
+                color: "grey",
+              }}
+            />
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <FadeMenu items={["اکانت من", "پروفایل", "خروج"]} />
@@ -330,7 +338,7 @@ export default function MyAppBar() {
         >
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "ltr" ? (
+              {theme.direction === "rtl" ? (
                 <ChevronLeftIcon style={{ fill: "white" }} />
               ) : (
                 <ChevronRightIcon style={{ fill: "white" }} />
@@ -444,33 +452,31 @@ export default function MyAppBar() {
             </ListItem>
             <ListItem disablePadding>
               <Search
-                placeholder="...جستجو"
-                width="100%"
-                color="black"
-                borderRadius="0px"
-                marginTop={10}
-                searchIconStyle={{ fill: "white" }}
+                items={options}
+                style={{
+                  marginTop: 10,
+                  borderRadius: "0px",
+                  width: "100%",
+                  backgroundColor: "white",
+                  color: "grey",
+                }}
               />
             </ListItem>
           </List>
         </Drawer>
-        <Grid container xs={12} direction="row">
-          <Grid item xs={5} />
-          <Grid item xs={4}>
-            <Main open={open}>
-              <DrawerHeader />
-              <Search
-                placeholder="...جستجو"
-                width={300}
-                color="black"
-                borderRadius="20px"
-                searchIconStyle={{ fill: "white" }}
-              />
-            </Main>
-          </Grid>
-          <Grid item xs={2} />
-        </Grid>
+        <Main open={open}>
+          <DrawerHeader />
+          <PostMediaPage musicName="Blinding Lights" singer="The Weekend" />
+        </Main>
       </Box>
     </body>
   );
 }
+const options = [
+  <FollowUnfollowContainer key="حامد" username="حامد" />,
+  <FollowUnfollowContainer key="محمد طاهر" username="محمد طاهر" />,
+  <FollowUnfollowContainer key="قاسم" username="قاسم" />,
+  <FollowUnfollowContainer key="مجتبی" username="مجتبی" />,
+  <FollowUnfollowContainer key="آی نور" username="آی نور" />,
+  <FollowUnfollowContainer key="مرتضی" username="مرتضی" />,
+];

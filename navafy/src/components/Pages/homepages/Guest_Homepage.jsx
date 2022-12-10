@@ -40,19 +40,19 @@ const homepage = () => {
                       <Box></Box>
                     </Grid>
                     <Grid item md={2}>
-                      <CardRockNRoll />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
                       <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <Card2022 />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <CardClassic />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <CardFocusMusic />
+                      <Card20s />
                     </Grid>
                   </Grid>
                 </Box>
@@ -64,19 +64,19 @@ const homepage = () => {
                       <Box></Box>
                     </Grid>
                     <Grid item md={2}>
-                      <CardRockNRoll />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
                       <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <Card2022 />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <CardClassic />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <CardFocusMusic />
+                      <Card20s />
                     </Grid>
                   </Grid>
                 </Box>
@@ -84,10 +84,10 @@ const homepage = () => {
             </Carousel>
           </Box>
 
-          <Box height={100} sx={{ bgcolor: "text.primary" }} />
+          <Box height={100} />
           <Box
-            width={300}
             sx={{
+              "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
               bgcolor: "text.secondary",
               color: "background.paper",
               p: 2,
@@ -105,19 +105,19 @@ const homepage = () => {
                       <Box></Box>
                     </Grid>
                     <Grid item md={2}>
-                      <CardRockNRoll />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
                       <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <Card2022 />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <CardClassic />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <CardFocusMusic />
+                      <Card20s />
                     </Grid>
                   </Grid>
                 </Box>
@@ -129,19 +129,19 @@ const homepage = () => {
                       <Box></Box>
                     </Grid>
                     <Grid item md={2}>
-                      <CardRockNRoll />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
                       <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <Card2022 />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <CardClassic />
+                      <Card20s />
                     </Grid>
                     <Grid item md={2}>
-                      <CardFocusMusic />
+                      <Card20s />
                     </Grid>
                   </Grid>
                 </Box>

@@ -10,7 +10,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import SentimentSatisfiedTwoToneIcon from "@mui/icons-material/SentimentSatisfiedTwoTone";
 import MapsUgcIcon from "@mui/icons-material/MapsUgc";
 
-import { Comment } from "../../../../Comment.js";
 import { Box, Grid } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import {
@@ -38,7 +37,13 @@ export const Card20s = () => {
   };
 
   return (
-    <Card sx={{ width: 250, height: 270 }}>
+    <Card
+      sx={{
+        "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
+        width: 250,
+        height: 270,
+      }}
+    >
       <CardActionArea>
         <CardMedia>
           <img src={card20s} height="140" width="250" />
@@ -55,14 +60,22 @@ export const Card20s = () => {
               component="div"
               variant="h5"
               sx={{
+                "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
                 textOverflow: "ellipsis",
                 overflow: "hidden",
               }}
             >
-              کویر
+              نام مدیا
             </Typography>
-            <Typography variant="h6" color="text.secondary" component="div">
-              شجریان
+            <Typography
+              variant="h6"
+              color="text.secondary"
+              component="div"
+              sx={{
+                "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
+              }}
+            >
+              نام آرتیست
             </Typography>
           </Box>
           <CardActions>
