@@ -37,6 +37,7 @@ import Dashboard from "../../Common/Dashboard";
 import MyAutoComplete from "../../Common/AutoComplete";
 import FollowUnfollowContainer from "../../Common/FollowUnfollowContainer";
 import {Profile} from "./Profile";
+import HomePage from "../../Common/HomePage";
 
 const drawerWidth = 240;
 
@@ -227,6 +228,7 @@ export default function ProfileEdit() {
 
   return (
     <body>
+      <HomePage/>
       <Box sx={{ display: "flex", backgroundColor: "#2b2135" }}>
         <CssBaseline />
         <AppBar

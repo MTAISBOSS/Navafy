@@ -7,6 +7,7 @@ import Homepage from "./components/Pages/Home Page/Homepage";
 import MyHomePage from "./components/Common/HomePage";
 import ProfileEdit from "./components/Pages/Profile Edit/ProfileEdit";
 import Playlist from "./components/Pages/Play list/PlayList";
+import PostMediaPage from "./components/Pages/Post Media/PostMedia";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route exact path="/signup" element={<Sign_up />} />
           <Route exact path="/artist_signup" element={<Artist_Sign_up />} />
           <Route exact path="/my_music_library" element={<Playlist />} />
+          <Route exact path="/music_info" element={<PostMediaPage />} />
+
         </Routes>
       </BrowserRouter>
     </div>

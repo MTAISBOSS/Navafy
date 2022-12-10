@@ -11,46 +11,6 @@ import MyTextfield from "../../Common/MyTextfield";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
-
 const favorite = [
   { title: "راک", id: 1 },
   { title: "پاپ", id: 2 },
@@ -80,7 +40,7 @@ export const Profile = () => {
         container
         marginLeft={10}
         marginRight={-20}
-        xs={4}
+        xs={6}
         direction="column"
       >
         <ProfileAvatarImage />
@@ -207,7 +167,6 @@ export const Profile = () => {
             type="date"
             text="تاریخ تولد"
             name="birthday"
-            placeholder="none"
             required
             style={{ width: 300 }}
             variant="outlined"
@@ -225,7 +184,10 @@ export const Profile = () => {
               renderInput={(params) => (
                 <TextField
                   sx={{
-                    "& > :not(style)": { fontFamily: "Vazirmatn" },
+                    "& > :not(style)": {
+                      fontFamily: "Vazirmatn",
+                      color: "white",
+                    },
                   }}
                   {...params}
                   variant="standard"
@@ -270,7 +232,7 @@ export const Profile = () => {
         </Grid>
       </Grid>
 
-      <Grid item container xs={4} />
+      <Grid item container xs={2} />
     </Grid>
   );
 };

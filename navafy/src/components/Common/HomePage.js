@@ -36,7 +36,7 @@ import { Grid } from "@mui/material";
 import Dashboard from "./Dashboard";
 import MyAutoComplete from "../Common/AutoComplete";
 import FollowUnfollowContainer from "./FollowUnfollowContainer";
-import PostMediaPage from "../Pages/Psot Media/PostMedia";
+import PostMediaPage from "../Pages/Post Media/PostMedia";
 import PostMediaPopUp from "./PostMedia";
 import ProfileEdit from "../Pages/Profile Edit/ProfileEdit";
 import { Profile } from "../Pages/Profile Edit/Profile";
@@ -403,32 +403,6 @@ export default function MyAppBar() {
             <ListItem disablePadding>
               <ListItemButton
                 onClick={() => {
-                  gotoMakePlayListPage();
-                }}
-              >
-                <ListItemIcon>
-                  <CreatePlayListIcon style={{ fill: "white" }} />
-                </ListItemIcon>
-                <ListItemText>
-                  <p
-                    style={{
-                      fontFamily: "Vazirmatn",
-                      fontSize: 14,
-                      height: 15,
-                      fontWeight: "bold",
-                      color: "white",
-                    }}
-                  >
-                    ایجاد فهرست پخش
-                  </p>
-                </ListItemText>
-              </ListItemButton>
-            </ListItem>
-            <Divider style={{ backgroundColor: "white" }} />
-
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={() => {
                   gotoLikedMusicPage();
                 }}
               >
@@ -466,8 +440,6 @@ export default function MyAppBar() {
         </Drawer>
         <Main open={open}>
           <DrawerHeader />
-          <PostMediaPage musicName="Blinding Lights" singer="The Weekend"/>
-
         </Main>
       </Box>
     </body>
