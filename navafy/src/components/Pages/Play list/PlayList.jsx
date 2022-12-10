@@ -3,7 +3,7 @@ import MusicInfoContainer from "../../Common/MusicInfoContainer";
 import MyButton from "../../Common/MyButton";
 import Modal from "@mui/material/Modal";
 import "./Playlist.css";
-import HomePage from "../../Common/HomePage";
+import HomePage from "./HomePage";
 import MyTextfield from "../../Common/MyTextfield";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";

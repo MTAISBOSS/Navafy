@@ -29,18 +29,18 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
 import { useNavigate } from "react-router-dom";
-import MyButton from "./MyButton";
-import Search from "./Search";
-import FadeMenu from "./ContextMenu";
+import MyButton from "../../Common/MyButton";
+import Search from "../../Common/Search";
+import FadeMenu from "../../Common/ContextMenu";
 import { Grid } from "@mui/material";
-import Dashboard from "./Dashboard";
-import MyAutoComplete from "../Common/AutoComplete";
-import FollowUnfollowContainer from "./FollowUnfollowContainer";
-import PostMediaPage from "../Pages/Psot Media/PostMedia";
-import PostMediaPopUp from "./PostMedia";
-import ProfileEdit from "../Pages/Profile Edit/ProfileEdit";
-import { Profile } from "../Pages/Profile Edit/Profile";
-import MyHomePage from "../Pages/homepages/Guest_Homepage.jsx";
+import Dashboard from "../../Common/Dashboard";
+import MyAutoComplete from "../../Common/AutoComplete";
+import FollowUnfollowContainer from "../../Common/FollowUnfollowContainer";
+import PostMediaPage from "../Psot Media/PostMedia";
+import PostMediaPopUp from "../../Common/PostMedia";
+import ProfileEdit from "../Profile Edit/ProfileEdit";
+import { Profile } from "../Profile Edit/Profile";
+import MyHomePage from "../homepages/Guest_Homepage.jsx";
 
 const drawerWidth = 240;
 
@@ -467,8 +467,6 @@ export default function MyAppBar() {
         </Drawer>
         <Main open={open}>
           <DrawerHeader />
-
-          <MyHomePage />
         </Main>
       </Box>
     </body>
