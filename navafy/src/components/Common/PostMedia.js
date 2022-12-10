@@ -31,9 +31,12 @@ export default function PostMediaPopUp(props) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button>
+      <MyButton
+        btntext="پست مدیا"
+        variant="outlined"
+        onClick={handleClickOpen}
+      />
+
       <Dialog
         open={open}
         onClose={handleClose}

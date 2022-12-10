@@ -44,10 +44,12 @@ const MusicInfoContainer = (props) => {
           </Avatar>
         </Grid>
         <Grid item container xs={4} direction="column" spacing={0.5}>
-          <Grid item xs={4} style={{ fontSize: props.Font_name }}>
+          <Grid item xs={4} style={{ fontSize: props.Font_name ,fontFamily:"Vazirmatn"}}>
             {props.name}
           </Grid>
-          <Grid item xd={1} style={{ fontSize: props.Font_description }}>
+          <Grid item xd={1} style={{ fontSize: props.Font_description,
+                      fontFamily:"Vazirmatn",
+                    }}>
             {props.description}
           </Grid>
         </Grid>
