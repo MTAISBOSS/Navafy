@@ -8,8 +8,10 @@ import {
   DialogContentText,
   DialogActions,
 } from "@mui/material";
-import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const notify = () => toast("Wow so easy!");
 
 export class Comment extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ export class Comment extends Component {
       isLoggedIn: false,
     };
   }
+
   render() {
     return this.state.isLoggedIn ? (
       <Dialog
@@ -35,7 +38,9 @@ export class Comment extends Component {
         </DialogActions>
       </Dialog>
     ) : (
-      <div>h</div>
+      <div>
+        <ToastContainer />
+      </div>
     );
   }
 }

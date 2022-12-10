@@ -2,61 +2,154 @@ import { AddBox } from "@mui/icons-material";
 import { Box, Grid } from "@mui/material";
 import { Stack } from "@mui/system";
 
-import { CardRockNRoll } from "../../../Assets/Image/cards/CardRockNRoll";
-import { Card20s } from "../../../Assets/Image/cards/Card20s";
-import { Card2022 } from "../../../Assets/Image/cards/Card2022Popular";
-import { CardFocusMusic } from "../../../Assets/Image/cards/CardFocusMusic";
-import { CardClassic } from "../../../Assets/Image/cards/CardClassic";
-import { red } from "@mui/material/colors";
-import { Navbar } from "../../Navbar";
+import { CardRockNRoll } from "../Home Page/cards/CardRockNRoll";
+import { Card20s } from "../Home Page/cards/Card20s";
+import { Card2022 } from "../Home Page/cards/Card2022Popular";
+import { CardFocusMusic } from "../Home Page/cards/CardFocusMusic";
+import { CardClassic } from "../Home Page/cards/CardClassic";
 
-const color = red[500];
+import React, { useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
+
+import CssBaseline from "@mui/material/CssBaseline";
 
 const homepage = () => {
   return (
     <>
-      <div className="App" dir="rtl">
-        <Navbar />
-      </div>
-      <Grid container margin={15}>
-        <Grid item md={12} my={5}>
-          <Box></Box>
-        </Grid>
-        <Grid item md={2}>
-          <CardRockNRoll />
-        </Grid>
-        <Grid item md={2}>
-          <Card20s />
-        </Grid>
-        <Grid item md={2}>
-          <Card2022 />
-        </Grid>
-        <Grid item md={2}>
-          <CardClassic />
-        </Grid>
-        <Grid item md={4}>
-          <CardFocusMusic />
-        </Grid>
+      <React.Fragment>
+        <CssBaseline />
 
-        <Grid item md={12} my={5}>
-          <Box>playlist</Box>
-        </Grid>
-        <Grid item md={2}>
-          <CardFocusMusic />
-        </Grid>
-        <Grid item md={2}>
-          <CardFocusMusic />
-        </Grid>
-        <Grid item md={2}>
-          <CardFocusMusic />
-        </Grid>
-        <Grid item md={2}>
-          <CardFocusMusic />
-        </Grid>
-        <Grid item md={4}>
-          <CardFocusMusic />
-        </Grid>
-      </Grid>
+        <Stack dir="rtl" direction="column" justifyContent="flex-end">
+          <Box
+            sx={{
+              width: "300",
+              bgcolor: "text.secondary",
+              color: "background.paper",
+              p: 2,
+            }}
+          >
+            تازه ترین ها
+          </Box>
+
+          <Box>
+            <Carousel interval={null} variant="dark">
+              <Carousel.Item sx={{ height: 100 }}>
+                <Box margin={7}>
+                  <Grid container>
+                    <Grid item md={1.18}>
+                      <Box></Box>
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardRockNRoll />
+                    </Grid>
+                    <Grid item md={2}>
+                      <Card20s />
+                    </Grid>
+                    <Grid item md={2}>
+                      <Card2022 />
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardClassic />
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardFocusMusic />
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Carousel.Item>
+              <Carousel.Item sx={{ height: 100 }}>
+                <Box margin={7}>
+                  <Grid container>
+                    <Grid item md={1.18}>
+                      <Box></Box>
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardRockNRoll />
+                    </Grid>
+                    <Grid item md={2}>
+                      <Card20s />
+                    </Grid>
+                    <Grid item md={2}>
+                      <Card2022 />
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardClassic />
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardFocusMusic />
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Carousel.Item>
+            </Carousel>
+          </Box>
+
+          <Box height={100} sx={{ bgcolor: "text.primary" }} />
+          <Box
+            width={300}
+            sx={{
+              bgcolor: "text.secondary",
+              color: "background.paper",
+              p: 2,
+            }}
+          >
+            معروف ترین ها
+          </Box>
+
+          <Box>
+            <Carousel interval={null} variant="dark">
+              <Carousel.Item sx={{ height: 100 }}>
+                <Box margin={7}>
+                  <Grid container>
+                    <Grid item md={1.18}>
+                      <Box></Box>
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardRockNRoll />
+                    </Grid>
+                    <Grid item md={2}>
+                      <Card20s />
+                    </Grid>
+                    <Grid item md={2}>
+                      <Card2022 />
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardClassic />
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardFocusMusic />
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Carousel.Item>
+              <Carousel.Item sx={{ height: 100 }}>
+                <Box margin={7}>
+                  <Grid container>
+                    <Grid item md={1.18}>
+                      <Box></Box>
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardRockNRoll />
+                    </Grid>
+                    <Grid item md={2}>
+                      <Card20s />
+                    </Grid>
+                    <Grid item md={2}>
+                      <Card2022 />
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardClassic />
+                    </Grid>
+                    <Grid item md={2}>
+                      <CardFocusMusic />
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Carousel.Item>
+            </Carousel>
+          </Box>
+        </Stack>
+      </React.Fragment>
     </>
   );
 };
