@@ -34,7 +34,7 @@ export const Profile = () => {
     }
   };
   return (
-    <Grid container direction="row">
+    <Grid container direction="row" style={{backgroundColor:"#2b2135"}}>
       <Grid
         item
         container

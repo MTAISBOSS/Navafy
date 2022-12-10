@@ -23,7 +23,6 @@ function App() {
           <Route exact path="/artist_signup" element={<Artist_Sign_up />} />
           <Route exact path="/my_music_library" element={<Playlist />} />
           <Route exact path="/music_info" element={<PostMediaPage />} />
-
         </Routes>
       </BrowserRouter>
     </div>
