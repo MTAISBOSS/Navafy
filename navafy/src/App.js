@@ -5,7 +5,8 @@ import Sign_up from "./components/Pages/Sign Up/Sign_up";
 import Artist_Sign_up from "./components/Pages/Artist Sign Up/Artist_Sign_Up";
 
 //import MyHomePage from "./components/Pages/homepages/Artist_Homepage.jsx";
-import MyHomePage from "./components/Pages/homepages/Guest_Homepage.jsx";
+import MyHomePage from "./components/Comment";
+//import MyHomePage from "./components/Pages/homepages/Guest_Homepage.jsx";
 //import Homepage from "./components/Pages/Home Page/Homepage";
 //import MyHomePage from "./components/Common/HomePage";
 //import MyHomePage from "./components/Pages/Home Page/HomePage.js";
