@@ -40,7 +40,6 @@ import PostMediaPage from "../Pages/Psot Media/PostMedia";
 import PostMediaPopUp from "./PostMedia";
 import ProfileEdit from "../Pages/Profile Edit/ProfileEdit";
 import { Profile } from "../Pages/Profile Edit/Profile";
-import MyHomePage from "../Pages/homepages/Guest_Homepage.jsx";
 
 const drawerWidth = 240;
 
@@ -467,8 +466,6 @@ export default function MyAppBar() {
         </Drawer>
         <Main open={open}>
           <DrawerHeader />
-
-          <MyHomePage />
         </Main>
       </Box>
     </body>

@@ -12,14 +12,20 @@ import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
 import CssBaseline from "@mui/material/CssBaseline";
+import MyAppBar from "../../Common/HomePage";
 
 const homepage = () => {
   return (
     <>
       <React.Fragment>
         <CssBaseline />
-
-        <Stack dir="rtl" direction="column" justifyContent="flex-end">
+        <MyAppBar />
+        <Stack
+          dir="rtl"
+          direction="column"
+          justifyContent="flex-end"
+          sx={{ display: "flex", backgroundColor: "#2b2135" }}
+        >
           <Box
             sx={{
               width: "300",
