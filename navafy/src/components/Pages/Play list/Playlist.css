@@ -19,24 +19,27 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #6c5483;
+  background: #2a0949;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #2a0949;
+  
+  background: #6c5483;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #21063a;
+  background: #48315f
 }
 .first_row {
-  margin: 20px 0px;
+  padding: 35px 20px ;
+  margin-bottom: 5%;
+  background-color: #251436;
 }
 .first_row span {
   font-size: 2.6rem;
-  margin: 0% 0% 0% 17%;
+  margin: 0% 0% 0% 12%;
 
   height: 50px;
   width: 125px;
@@ -88,6 +91,7 @@
   width: 100%;
 }
 .options {
+  background-color: #261936;
   padding: 40px 7px 30px;
   margin-bottom: 20px;
 }
@@ -179,7 +183,7 @@
   background-color:"#633295";
   margin: 40px 20px;
   border-radius: 10px;
-  min-height: 45%;
+  min-height: 54%;
   padding :1% 0%;
 }
 .music_component_added{

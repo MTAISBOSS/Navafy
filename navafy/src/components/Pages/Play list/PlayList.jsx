@@ -59,11 +59,10 @@ const PlayList = () => {
                 fontWeight: "bold",
                 fontFamily: "Vazirmatn",
                 color: "#cde6fe",
-                height: 75,
-                width: 135,
+                height: 50,
+                width: 140,
                 fontSize: 14,
                 borderRadius: 10,
-                fontSize: 13,
               }}
             />
           </div>
@@ -175,9 +174,9 @@ const PlayList = () => {
                 borderRadius: 10,
               }}
             />
-            <MyTextfield
+            <TextField
               id="playlist_name"
-              text="نام پلی لیست"
+              label="نام پلی لیست"
               type="text"
               onChange={(event) => {
                 setnew_pl_name(event.currentTarget.value);
@@ -186,22 +185,34 @@ const PlayList = () => {
               style={{
                 width: 300,
                 backgroundColor: "#2a2033",
-                margin: 10,
-                borderRadius: 10,
-                marginLeft: "58%",
-                marginTop: 30,
+                borderRadius: '10px',
+                marginLeft: "31%",
+                marginTop: 70,
+                marginBottom:40,
+                direction:'rtl'
               }}
-              sx={{"& > :not(style)":{fontFamily:"Vazirmatn",color:"white"}}}
+              sx={{
+                "& .MuiFormLabel-root": {
+                },
+                "& > :not(style)": { fontFamily: "Vazirmatn", color: "gray" },
+              }}
               variant="outlined"
               required
+              InputProps={{
+                sx: {
+                  "& input": {
+                    textAlign: "right",
+                  },
+                },
+              }}
             />
             <Autocomplete
               disablePortal
               id="combo-box-demo"
               options={Object.keys(music)}
               style={{
-                width: "80%",
-                marginLeft: "10%",
+                width: "90%",
+                marginLeft: "4%",
                 marginTop: "2%",
                 backgroundColor: "#2a2033",
                 borderRadius: "10px",
@@ -211,8 +222,8 @@ const PlayList = () => {
                   <MusicInfoContainer
                     name={option.key}
                     description={music[option.key]}
-                    Font_name='18px'
-                    Font_description='13px'
+                    Font_name="18px"
+                    Font_description="13px"
                     Space={1.2}
                     padding="20px"
                     onClick={() => {
@@ -230,12 +241,13 @@ const PlayList = () => {
                       ]);
                     }}
                     style={{
-                      backgroundColor: "#5b268b",
+                      backgroundColor: "#00cf2d",
                       width: 20,
                       height: 40,
                       margin: "20px",
-                      borderRadius: "20px",
+                      borderRadius: "10px",
                       color: "#cde6fe",
+                      fontFamily: "Vazirmatn",
                     }}
                     btntext="افزودن"
                   />
@@ -247,7 +259,14 @@ const PlayList = () => {
                   id="filled-basic"
                   label="آهنگ مورد نظر"
                   variant="filled"
-                  sx={{"& > :not(style)":{fontFamily:"Vazirmatn",color:"grey"}}}
+                  sx={{
+                    "& > :not(style)": {
+                      fontFamily: "Vazirmatn",
+                      color: "grey",
+                      direction:'rtl'
+                    },
+                  }}
+                  
                 />
               )}
             />
@@ -258,8 +277,8 @@ const PlayList = () => {
                     name={musics}
                     description={music[musics]}
                     Space={1}
-                    Font_name='20px'
-                    Font_description='10px'
+                    Font_name="20px"
+                    Font_description="10px"
                     padding="20px"
                     Size="50px"
                   />
@@ -267,7 +286,7 @@ const PlayList = () => {
                     variant="contained"
                     onClick={() => {
                       setadded_music((current) =>
-                        current.filter((musics) => musics !== music)
+                        current.filter((choosed) => musics !== choosed)
                       );
                     }}
                     style={{
@@ -277,7 +296,7 @@ const PlayList = () => {
                       margin: "20px",
                       borderRadius: "10px",
                       color: "#cde6fe",
-                      fontFamily:"Vazirmatn",
+                      fontFamily: "Vazirmatn",
                     }}
                     btntext="حذف"
                   />
@@ -317,16 +336,16 @@ const PlayList = () => {
 export default PlayList;
 const music = {
   "ماه پیشونی": "محسن چاوشی",
-  'ال': "سینا پارسیان",
- "دریا": "رضا ملک زاده",
- "هیس": "آصف آریا",
+  ال: "سینا پارسیان",
+  دریا: "رضا ملک زاده",
+  هیس: "آصف آریا",
   "قراضه چین": "محسن چاوشی",
- "نفس": "فرزاد فرزین",
+  نفس: "فرزاد فرزین",
   "نداره این دنیا وفا": "ناصر یعقوبی",
   "آدم سابق": "رضا بهرام",
   "بگو انتخابم": "آنیل",
- "کولی": "همایون شجریان",
+  کولی: "همایون شجریان",
   "رنگین کمون": "کسری زاهدی",
- "قرار": "مهدی احمدوند",
- 'قاصدک': "پازل بند",
+  قرار: "مهدی احمدوند",
+  قاصدک: "پازل بند",
 };
