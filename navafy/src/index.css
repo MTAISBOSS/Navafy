@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Vazirmatn", sans-serif;
+  background-color: #2b2135;
+
+}
+body {
+  margin: 0;
+  background-color: #110d15;
+}
+
+.panelbackground {
+  background-color: rgb(255, 255, 255);
+}
+
+.center {
+  text-align: center;
+}
+.contentcenter {
+  align-items: center;
+  justify-content: center;
+}
+
+.whiteshadow {
+  -webkit-box-shadow: 0px 6px 15px -1px rgba(255, 255, 255, 0.4);
+  box-shadow: 0px 6px 15px -1px rgba(255, 255, 255, 0.4);
+  border: none;
+  border-radius: 10px;
+}
+.shadow {
+  -webkit-box-shadow: 0px 6px 15px -1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 6px 15px -1px rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 10px;
+}
+.logincontainer {
+  text-align: center;
+  height: 100vh;
+  width: 50%;
+  border-radius: 0%;
+  transition: 0.2s;
+}
+
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+/* Top left text */
+.top {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+}
+.bottom {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  text-align: center;
+  color: rgb(235, 235, 235);
+}
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+
+.pointer {
+  cursor: pointer;
+}
