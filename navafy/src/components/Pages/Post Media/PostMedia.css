@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: "Vazirmatn", sans-serif;
+}
+body {
+  margin: 0;
+  font-family: "Vazirmatn", sans-serif;
+}
+.musicImage {
+  padding: 20px;
+  border: none;
+  border-radius: 50px;
+  transition: 0.4s;
+}
+.musicImage:hover {
+  padding: 15px;
+}
+.musicbackground {
+  background: rgb(43, 33, 53);
+  background: linear-gradient(
+    0deg,
+    rgba(43, 33, 53, 1) 0%,
+    rgba(255, 136, 0, 0.823) 50%
+  );
+}

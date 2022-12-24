@@ -3,14 +3,11 @@ import Login from "./components/Pages/Login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Sign_up from "./components/Pages/Sign Up/Sign_up";
 import Artist_Sign_up from "./components/Pages/Artist Sign Up/Artist_Sign_Up";
-
-//import MyHomePage from "./components/Pages/homepages/Artist_Homepage.jsx";
-import MyHomePage from "./components/Pages/homepages/Guest_Homepage.jsx";
-//import Homepage from "./components/Pages/Home Page/Homepage";
-//import MyHomePage from "./components/Common/HomePage";
-//import MyHomePage from "./components/Pages/Home Page/HomePage.js";
+import Test from "./components/Pages/AddMedia_Artist/test";
+import MyHomePage from "./components/Common/HomePage";
 import ProfileEdit from "./components/Pages/Profile Edit/ProfileEdit";
 import Playlist from "./components/Pages/Play list/PlayList";
+import PostMediaPage from "./components/Pages/Post Media/PostMedia";
 
 function App() {
   return (
@@ -25,6 +22,8 @@ function App() {
           <Route exact path="/signup" element={<Sign_up />} />
           <Route exact path="/artist_signup" element={<Artist_Sign_up />} />
           <Route exact path="/my_music_library" element={<Playlist />} />
+          <Route exact path="/music_info" element={<PostMediaPage />} />
+          <Route exact path="/test" element={<Test/>} />
         </Routes>
       </BrowserRouter>
     </div>
