@@ -192,8 +192,7 @@ const PlayList = () => {
                 direction:'rtl'
               }}
               sx={{
-                "& .MuiFormLabel-root": {
-                },
+                "& .MuiFormLabel-root": {},
                 "& > :not(style)": { fontFamily: "Vazirmatn", color: "gray" },
               }}
               variant="outlined"
