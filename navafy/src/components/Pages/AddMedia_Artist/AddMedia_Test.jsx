@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import AddMedia_Artist from "./AddMedia_Artist";
 
-const Test=()=>{
-    const [isClicked,setisClicked]=useState(false);
+const AddMedia_Test=()=>{
     return(
         <div>
             <AddMedia_Artist/>
@@ -10,4 +9,4 @@ const Test=()=>{
         
     );
 }
-export default Test;
+export default AddMedia_Test;

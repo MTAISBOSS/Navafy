@@ -3,8 +3,7 @@ import MusicInfoContainer from "../../Common/MusicInfoContainer";
 import MyButton from "../../Common/MyButton";
 import Modal from "@mui/material/Modal";
 import "./Playlist.css";
-import HomePage from "./HomePage";
-import MyTextfield from "../../Common/MyTextfield";
+import HomePage from "../../Common/HomePage";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 const PL = {};
@@ -113,10 +112,8 @@ const PlayList = () => {
               onClick={() => {
                 setplaylist_items((current) => {
                   const copy = { ...current };
-                  console.log(copy);
                   delete copy[clicked_pl];
                   delete PL[clicked_pl];
-                  console.log(copy);
                   return copy;
                 });
                 setclicked_pl("");
