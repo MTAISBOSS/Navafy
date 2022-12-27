@@ -216,7 +216,7 @@ export default function MyAppBar() {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <FadeMenu
-                style={{ display: hasLogined ? "none" : "block" }}
+                style={{ display: !hasLogined ? "none" : "block" }}
                 items={["اکانت من", "پروفایل", "خروج"]}
               />
             </Box>
