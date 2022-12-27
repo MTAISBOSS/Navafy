@@ -1,10 +1,9 @@
 import * as React from "react";
+import { useLocation } from "react-router-dom";
 import { styled, alpha, useTheme } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/HomeRounded";
 import LibraryIcon from "@mui/icons-material/LibraryMusicRounded";
 import CreatePlayListIcon from "@mui/icons-material/AddCircle";
@@ -28,13 +27,17 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { Profile } from "./Profile";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import MyButton from "../../Common/MyButton";
+import Search from "../../Common/Search";
+import FadeMenu from "../../Common/ContextMenu";
+import Grid from "@mui/material/Grid";
+import Dashboard from "../../Common/Dashboard";
+import MyAutoComplete from "../../Common/AutoComplete";
+import FollowUnfollowContainer from "../../Common/FollowUnfollowContainer";
+import { Profile } from "./Profile";
+import HomePage from "../../Common/HomePage";
 
 const drawerWidth = 240;
 
@@ -46,13 +49,13 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginRight: -drawerWidth,
+    marginLeft: `-${drawerWidth}px`,
     ...(open && {
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginRight: 0,
+      marginLeft: 0,
     }),
   })
 );
@@ -66,11 +69,11 @@ const AppBar = styled(MuiAppBar, {
   }),
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginRight: drawerWidth,
   }),
 }));
 
@@ -80,52 +83,14 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: "flex-start",
-}));
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
+  justifyContent: "flex-end",
 }));
 
 export default function ProfileEdit() {
   const theme = useTheme();
   const navigate = useNavigate();
+
+  const location = useLocation();
 
   const gotoHomePage = () => navigate("/homepage");
   const gotoLibraryPage = () => navigate("/my_music_library");
@@ -135,10 +100,11 @@ export default function ProfileEdit() {
   const gotoSignUpPage = () => navigate("/signup");
   const gotoLoginPage = () => navigate("/login");
 
-
+  const [homepageContent, sethomepageContent] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [hasLogined, sethasLogined] = React.useState(false);
+  const [hasSignedUp, sethasSignedUp] = React.useState(false);
 
-  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -188,7 +154,7 @@ export default function ProfileEdit() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem
+      {/* <MenuItem
         style={{ fontFamily: "Vazirmatn" }}
         onClick={() => {
           handleMenuClose();
@@ -206,7 +172,8 @@ export default function ProfileEdit() {
       >
         {" "}
         خروج
-      </MenuItem>
+      </MenuItem> */}
+      <Dashboard />
     </Menu>
   );
 
@@ -260,239 +227,17 @@ export default function ProfileEdit() {
   );
 
   return (
-    <div>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-
-        <MuiAppBar
-          style={{ backgroundColor: "#00cf2d" }}
-          open={open}
-          position="static"
-        >
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              sx={{ ...(open && { display: "none" }), mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              style={{ fontFamily: "Vazirmatn" }}
-              sx={{ display: { xs: "none", sm: "block" } }}
-            >
-              نوافای
-            </Typography>
-            <MyButton
-              btntext="ثبت نام"
-              onClick={() => {
-                gotoSignUpPage();
-              }}
-              variant="contained"
-              style={{
-                marginLeft: 50,
-                backgroundColor: "#00cf2d",
-                color: "white",
-                fontWeight: "bold",
-                fontFamily: "Vazirmatn",
-                height: 30,
-                width: 80,
-                fontSize: 14,
-                borderRadius: 5,
-              }}
-            />
-            <MyButton
-              btntext="ورود"
-              onClick={() => {
-                gotoLoginPage();
-              }}
-              variant="contained"
-              style={{
-                marginLeft: 20,
-                backgroundColor: "#00cf2d",
-                color: "white",
-                fontWeight: "bold",
-                fontFamily: "Vazirmatn",
-                height: 30,
-                width: 80,
-                fontSize: 14,
-                borderRadius: 5,
-              }}
-            />
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </MuiAppBar>
-        {renderMobileMenu}
-        {renderMenu}
-      </Box>
-      <Main style={{ backgroundColor: "white" }} open={open}>
-        <DrawerHeader />
-        <Profile />
-      </Main>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton
-              onClick={() => {
-                gotoHomePage();
-              }}
-            >
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText>
-                <p
-                  style={{
-                    fontFamily: "Vazirmatn",
-                    fontSize: 14,
-                    height: 15,
-                    fontWeight: "bold",
-                  }}
-                >
-                  صفحه اصلی
-                </p>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton
-              onClick={() => {
-                gotoLibraryPage();
-              }}
-            >
-              <ListItemIcon>
-                <LibraryIcon />
-              </ListItemIcon>
-              <ListItemText>
-                <p
-                  style={{
-                    fontFamily: "Vazirmatn",
-                    fontSize: 14,
-                    height: 15,
-                    fontWeight: "bold",
-                  }}
-                >
-                  کتابخانه من
-                </p>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem disablePadding>
-            <ListItemButton
-              onClick={() => {
-                gotoMakePlayListPage();
-              }}
-            >
-              <ListItemIcon>
-                <CreatePlayListIcon />
-              </ListItemIcon>
-              <ListItemText>
-                <p
-                  style={{
-                    fontFamily: "Vazirmatn",
-                    fontSize: 14,
-                    height: 15,
-                    fontWeight: "bold",
-                  }}
-                >
-                  ایجاد فهرست پخش
-                </p>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton
-              onClick={() => {
-                gotoLikedMusicPage();
-              }}
-            >
-              <ListItemIcon>
-                <HeartIcon />
-              </ListItemIcon>
-              <ListItemText>
-                <p
-                  style={{
-                    fontFamily: "Vazirmatn",
-                    fontSize: 14,
-                    height: 15,
-                    fontWeight: "bold",
-                  }}
-                >
-                  آهنگ های مورد علاقه من
-                </p>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <Search className="shadow pointer" >
-              <SearchIconWrapper className="pointer" onClick={handleSearch}>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                style={{
-                  fontFamily: "Vazirmatn",
-                  color: "grey",
-                }}
-                placeholder="...جستجو"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-          </ListItem>
-        </List>
-      </Drawer>
-    </div>
+    <body>
+      <HomePage />
+      <Profile />
+    </body>
   );
 }
+const options = [
+  <FollowUnfollowContainer key="حامد" username="حامد" />,
+  <FollowUnfollowContainer key="محمد طاهر" username="محمد طاهر" />,
+  <FollowUnfollowContainer key="قاسم" username="قاسم" />,
+  <FollowUnfollowContainer key="مجتبی" username="مجتبی" />,
+  <FollowUnfollowContainer key="آی نور" username="آی نور" />,
+  <FollowUnfollowContainer key="مرتضی" username="مرتضی" />,
+];

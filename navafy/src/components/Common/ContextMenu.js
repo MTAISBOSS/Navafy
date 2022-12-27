@@ -21,6 +21,7 @@ export default function FadeMenu(props) {
   return (
     <div>
       <IconButton
+      style={props.style}
         id="fade-button"
         aria-controls={open ? "fade-menu" : undefined}
         aria-haspopup="true"
