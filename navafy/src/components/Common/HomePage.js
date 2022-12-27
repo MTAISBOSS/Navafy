@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useLocation } from "react-router-dom";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
@@ -33,6 +34,12 @@ import Search from "./Search";
 import FadeMenu from "./ContextMenu";
 import { Grid } from "@mui/material";
 import Dashboard from "./Dashboard";
+import MyAutoComplete from "../Common/AutoComplete";
+import FollowUnfollowContainer from "./FollowUnfollowContainer";
+import PostMediaPage from "../Pages/Post Media/PostMedia";
+import PostMediaPopUp from "./PostMedia";
+import ProfileEdit from "../Pages/Profile Edit/ProfileEdit";
+import { Profile } from "../Pages/Profile Edit/Profile";
 
 const drawerWidth = 240;
 
@@ -95,6 +102,8 @@ export default function MyAppBar() {
 
   const [homepageContent, sethomepageContent] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [hasLogined, sethasLogined] = React.useState(false);
+  const [hasSignedUp, sethasSignedUp] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -106,9 +115,6 @@ export default function MyAppBar() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -128,94 +134,7 @@ export default function MyAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      {/* <MenuItem
-        style={{ fontFamily: "Vazirmatn" }}
-        onClick={() => {
-          handleMenuClose();
-          gotoProfileEditPage();
-        }}
-      >
-        پروفایل
-      </MenuItem>
-      <MenuItem style={{ fontFamily: "Vazirmatn" }} onClick={handleMenuClose}>
-        اکانت من
-      </MenuItem>
-      <MenuItem
-        style={{ fontFamily: "Vazirmatn", color: "red" }}
-        onClick={handleMenuClose}
-      >
-        {" "}
-        خروج
-      </MenuItem> */}
-      <Dashboard/>
-    </Menu>
-  );
-
   const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <body>
@@ -252,6 +171,8 @@ export default function MyAppBar() {
               }}
               variant="contained"
               style={{
+                display: hasLogined ? "none" : "block",
+
                 marginLeft: 50,
                 backgroundColor: "#00cf2d",
                 color: "white",
@@ -270,6 +191,7 @@ export default function MyAppBar() {
               }}
               variant="contained"
               style={{
+                display: hasLogined ? "none" : "block",
                 marginLeft: 20,
                 backgroundColor: "#00cf2d",
                 color: "white",
@@ -281,10 +203,22 @@ export default function MyAppBar() {
                 borderRadius: 5,
               }}
             />
-
+            <Search
+              style={{
+                borderRadius: "none",
+                width: 300,
+                height: 40,
+                marginLeft: 25,
+                backgroundColor: "white",
+                color: "grey",
+              }}
+            />
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <FadeMenu items={["اکانت من", "پروفایل", "خروج"]} />
+              <FadeMenu
+                style={{ display: hasLogined ? "none" : "block" }}
+                items={["اکانت من", "پروفایل", "خروج"]}
+              />
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
@@ -316,7 +250,7 @@ export default function MyAppBar() {
         >
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "ltr" ? (
+              {theme.direction === "rtl" ? (
                 <ChevronLeftIcon style={{ fill: "white" }} />
               ) : (
                 <ChevronRightIcon style={{ fill: "white" }} />
@@ -381,32 +315,6 @@ export default function MyAppBar() {
             <ListItem disablePadding>
               <ListItemButton
                 onClick={() => {
-                  gotoMakePlayListPage();
-                }}
-              >
-                <ListItemIcon>
-                  <CreatePlayListIcon style={{ fill: "white" }} />
-                </ListItemIcon>
-                <ListItemText>
-                  <p
-                    style={{
-                      fontFamily: "Vazirmatn",
-                      fontSize: 14,
-                      height: 15,
-                      fontWeight: "bold",
-                      color: "white",
-                    }}
-                  >
-                    ایجاد فهرست پخش
-                  </p>
-                </ListItemText>
-              </ListItemButton>
-            </ListItem>
-            <Divider style={{ backgroundColor: "white" }} />
-
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={() => {
                   gotoLikedMusicPage();
                 }}
               >
@@ -430,33 +338,30 @@ export default function MyAppBar() {
             </ListItem>
             <ListItem disablePadding>
               <Search
-                placeholder="...جستجو"
-                width="100%"
-                color="black"
-                borderRadius="0px"
-                marginTop={10}
-                searchIconStyle={{ fill: "white" }}
+                items={options}
+                style={{
+                  marginTop: 10,
+                  borderRadius: "0px",
+                  width: "100%",
+                  backgroundColor: "white",
+                  color: "grey",
+                }}
               />
             </ListItem>
           </List>
         </Drawer>
-        <Grid container xs={12} direction="row">
-          <Grid item xs={5} />
-          <Grid item xs={4}>
-            <Main open={open}>
-              <DrawerHeader />
-              <Search
-                placeholder="...جستجو"
-                width={300}
-                color="black"
-                borderRadius="20px"
-                searchIconStyle={{ fill: "white" }}
-              />
-            </Main>
-          </Grid>
-          <Grid item xs={2} />
-        </Grid>
+        <Main open={open}>
+          <DrawerHeader />
+        </Main>
       </Box>
     </body>
   );
 }
+const options = [
+  <FollowUnfollowContainer key="حامد" username="حامد" />,
+  <FollowUnfollowContainer key="محمد طاهر" username="محمد طاهر" />,
+  <FollowUnfollowContainer key="قاسم" username="قاسم" />,
+  <FollowUnfollowContainer key="مجتبی" username="مجتبی" />,
+  <FollowUnfollowContainer key="آی نور" username="آی نور" />,
+  <FollowUnfollowContainer key="مرتضی" username="مرتضی" />,
+];
