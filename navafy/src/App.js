@@ -14,6 +14,7 @@ import Account_ChangePassword from "./components/Pages/Account/Account_ChangePas
 import ArtistAccount_ChangeInfo from "./components/Pages/Artist Account/Account_ChangeInfo";
 import ArtistAccount_ChangePassword from "./components/Pages/Artist Account/Account_ChangePassword";
 import ArtistAccount_Overview from "./components/Pages/Artist Account/Account";
+import AddMedia_Test from "./components/Pages/AddMedia_Artist/AddMedia_Test";
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/my_music_library" element={<Playlist />} />
           <Route exact path="/music_info" element={<PostMediaPage />} />
           <Route exact path="/account/overview" element={<Account />} />
+          <Route exact path="/test" element={<AddMedia_Test />} />
           <Route
             exact
             path="/account/changeinfo"
