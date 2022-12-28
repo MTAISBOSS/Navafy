@@ -11,15 +11,21 @@ export default function FadeMenu(props) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
   const [isartist, setisartist] = React.useState(false);
 
+
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
     handleuseraccount();
+  };
+  const logOut = () => {
+    props.sethasLogined(false);
+    localStorage.removeItem("token");
+    navigate("/login");
   };
   const handleuseraccount = () => {
     if (isartist) {
@@ -57,7 +63,7 @@ export default function FadeMenu(props) {
         <MenuItem onClick={handleClose} style={{ fontFamily: "Vazirmatn" }}>
           {"پروفایل من"}
         </MenuItem>
-        <MenuItem onClick={handleClose} style={{ fontFamily: "Vazirmatn" }}>
+        <MenuItem onClick={logOut} style={{ fontFamily: "Vazirmatn" }}>
           {"خروج"}
         </MenuItem>
         {/* {items.map((item) => (

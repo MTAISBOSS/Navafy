@@ -16,6 +16,8 @@ import ArtistAccount_ChangePassword from "./components/Pages/Artist Account/Acco
 import ArtistAccount_Overview from "./components/Pages/Artist Account/Account";
 
 function App() {
+  
+
   return (
     <div>
       <BrowserRouter>

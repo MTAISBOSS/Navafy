@@ -40,6 +40,7 @@ import PostMediaPage from "../Pages/Post Media/PostMedia";
 import PostMediaPopUp from "./PostMedia";
 import ProfileEdit from "../Pages/Profile Edit/ProfileEdit";
 import { Profile } from "../Pages/Profile Edit/Profile";
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -105,6 +106,13 @@ export default function MyAppBar() {
   const [hasLogined, sethasLogined] = React.useState(false);
   const [hasSignedUp, sethasSignedUp] = React.useState(false);
 
+  React.useEffect(() => {
+    sethasLogined(true);
+    console.log(localStorage.getItem("token"));
+  }, [localStorage.getItem("token")]);
+  React.useEffect(() => {
+    console.log(localStorage.getItem("token") + " Hello ");
+  }, [hasLogined]);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -217,7 +225,7 @@ export default function MyAppBar() {
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <FadeMenu
                 style={{ display: !hasLogined ? "none" : "block" }}
-                items={["اکانت من", "پروفایل", "خروج"]}
+                sethasLogined={sethasLogined}
               />
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
