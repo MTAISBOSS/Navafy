@@ -13,6 +13,8 @@ import React, { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import MyAppBar from "../../Navbar";
 
+import { borders } from "@mui/system";
+
 const homepage = () => {
   return (
     <>
@@ -31,7 +33,10 @@ const homepage = () => {
                 <Box></Box>
               </Grid>
               <Grid item md={2}>
-                <Box></Box>
+                <Box
+                  bgcolor={"white"}
+                  sx={{ width: 250, height: 270, borderRadius: 1 }}
+                ></Box>
               </Grid>
               <Grid item md={2}>
                 <ArtistMediaCard />
