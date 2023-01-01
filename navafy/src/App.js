@@ -3,7 +3,7 @@ import Login from "./components/Pages/Login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Sign_up from "./components/Pages/Sign Up/Sign_up";
 import Artist_Sign_up from "./components/Pages/Artist Sign Up/Artist_Sign_Up";
-import Homepage from "./components/Pages/Home Page/Homepage";
+// import Homepage from "./components/Pages/Home Page/Homepage";
 import MyHomePage from "./components/Common/HomePage";
 import ProfileEdit from "./components/Pages/Profile Edit/ProfileEdit";
 import Playlist from "./components/Pages/Play list/PlayList";
@@ -21,6 +21,7 @@ function App() {
 
   return (
     <div>
+      
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<MyHomePage />} />

@@ -107,12 +107,13 @@ export default function MyAppBar() {
   const [hasSignedUp, sethasSignedUp] = React.useState(false);
 
   React.useEffect(() => {
-    sethasLogined(true);
     console.log(localStorage.getItem("token"));
+    if (localStorage.getItem("token")) {
+      sethasLogined(true);
+    } else sethasLogined(false);
   }, [localStorage.getItem("token")]);
-  React.useEffect(() => {
-    console.log(localStorage.getItem("token") + " Hello ");
-  }, [hasLogined]);
+
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -223,10 +224,7 @@ export default function MyAppBar() {
             />
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <FadeMenu
-                style={{ display: !hasLogined ? "none" : "block" }}
-                sethasLogined={sethasLogined}
-              />
+              {hasLogined && <FadeMenu sethasLogined={sethasLogined} />}
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
