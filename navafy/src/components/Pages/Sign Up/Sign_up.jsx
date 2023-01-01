@@ -19,15 +19,20 @@ const Sign_up = () => {
   const gotoHomePage = () => navigate("/");
   const gotoArtistSignUpPage = () => navigate("/artist_signup");
 
-  const onSubmit = (values, actions) => {
-    console.log("sign up");
+  const onSubmit = async (values) => {
+    console.log("signup");
+
+   
     axios
       .post(signupUrl, {
         username: values.username,
         password: values.password,
         email: values.email,
       })
-      .then((res) => localStorage.setItem("token", res.data.token));
+      .then((res) => {
+        console.log(res);
+        gotoLoginPage();
+      });
   };
 
   const titlestyles = {

@@ -8,19 +8,18 @@ import { useFormik, validationSchema } from "formik";
 import { Grid } from "@mui/material";
 import * as yup from "yup";
 import axios from "axios";
-import * as DataContainer from "../../../Static/DataContainer"
+import * as DataContainer from "../../../Static/DataContainer";
 import { UserValid } from "./LoginFormValidation";
-const API_POST_NEW_RULE =  DataContainer.API_LOGIN;
-
+const loginUrl = DataContainer.API_LOGIN;
 
 const Login = () => {
   const navigate = useNavigate();
 
-  
   const gotoSignUpPage = () => navigate("/signup");
   const gotoHomePage = () => navigate("/");
+  const [usernamedata, setusernamedata] = React.useState("");
+  const [passworddata, setpassworddata] = React.useState("");
 
-  
   const titlestyles = {
     color: "black",
     textAlign: "center",
@@ -30,27 +29,27 @@ const Login = () => {
     borderRadius: "0px",
   };
 
-  const onSubmit = (values, actions) => {
+  const onSubmit = async (values) => {
     console.log("login");
 
-    axios
-      .post(API_POST_NEW_RULE, {
-        username: values.username,
-        password: values.password,
+    let data = new FormData();
+    data.append("username", values.username);
+    data.append("password", values.password);
+
+    let config = {
+      method: "post",
+      url: loginUrl,
+      data: data,
+    };
+
+    axios(config)
+      .then(function (res) {
+        localStorage.setItem("token", "Token " + res.data.token);
+        gotoHomePage();
       })
-      .then((res) => localStorage.setItem("token", res.data.token));
-    // axios({
-    //   method: "post",
-    //   url: API_POST_NEW_RULE,
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //     Authorization: localStorage.getItem("user_token"),
-    //   },
-    //   params: {
-    //     u,
-    //   },
-    // });
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   const {
     values,
@@ -64,6 +63,7 @@ const Login = () => {
     initialValues: {
       username: "",
       password: "",
+      confirmPassword: "",
     },
     validationSchema: UserValid,
     onSubmit,
@@ -71,6 +71,7 @@ const Login = () => {
 
   return (
     <Grid container xs={12} direction="row">
+      <script src="../../../Static/DataContainer.js"></script>
       <Grid className="center" item xs={4} container direction="column">
         {/* <img style={{ height: "100vh", width: "120vh" }} src={background} /> */}
         <Grid item xs={2} />
