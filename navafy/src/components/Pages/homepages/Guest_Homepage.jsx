@@ -38,7 +38,7 @@ const homepage = () => {
           </Box>
 
           <Box>
-            <Carousel interval={null} variant="dark">
+            <Carousel interval={null}>
               <Carousel.Item sx={{ height: 100 }}>
                 <Box margin={7}>
                   <Grid container>
@@ -103,7 +103,7 @@ const homepage = () => {
           </Box>
 
           <Box>
-            <Carousel interval={null} variant="dark">
+            <Carousel interval={null}>
               <Carousel.Item sx={{ height: 100 }}>
                 <Box margin={7}>
                   <Grid container>
