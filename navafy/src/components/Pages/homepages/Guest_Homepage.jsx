@@ -2,11 +2,7 @@ import { AddBox } from "@mui/icons-material";
 import { Box, Grid } from "@mui/material";
 import { Stack } from "@mui/system";
 
-import { CardRockNRoll } from "../Home Page/cards/CardRockNRoll";
 import { Card20s } from "../Home Page/cards/Card20s";
-import { Card2022 } from "../Home Page/cards/Card2022Popular";
-import { CardFocusMusic } from "../Home Page/cards/CardFocusMusic";
-import { CardClassic } from "../Home Page/cards/CardClassic";
 
 import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";

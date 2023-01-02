@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, IconButton } from "@mui/material";
-import card20s from "./cardsimg/20s.jpg";
+import card20s from "../../../../Assets/Image/cards/cardsimg/20s.jpg";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SentimentSatisfiedTwoToneIcon from "@mui/icons-material/SentimentSatisfiedTwoTone";
