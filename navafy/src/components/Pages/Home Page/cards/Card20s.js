@@ -80,7 +80,16 @@ export const Card20s = () => {
                 overflow: "hidden",
               }}
             >
-              نام مدیا
+              <p
+                style={{
+                  fontFamily: "Vazirmatn",
+                  fontSize: 20,
+                  height: 15,
+                  fontWeight: "bold",
+                }}
+              >
+                نام مدیا
+              </p>
             </Typography>
             <Typography
               variant="h6"
