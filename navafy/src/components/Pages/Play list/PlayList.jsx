@@ -4,6 +4,7 @@ import MyButton from "../../Common/MyButton";
 import Modal from "@mui/material/Modal";
 import "./Playlist.css";
 import HomePage from "../../Common/HomePage";
+import MyTextfield from "../../Common/MyTextfield";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 const PL = {};
@@ -58,10 +59,11 @@ const PlayList = () => {
                 fontWeight: "bold",
                 fontFamily: "Vazirmatn",
                 color: "#cde6fe",
-                height: 50,
-                width: 140,
+                height: 75,
+                width: 135,
                 fontSize: 14,
                 borderRadius: 10,
+                fontSize: 13,
               }}
             />
           </div>
@@ -112,8 +114,10 @@ const PlayList = () => {
               onClick={() => {
                 setplaylist_items((current) => {
                   const copy = { ...current };
+                  console.log(copy);
                   delete copy[clicked_pl];
                   delete PL[clicked_pl];
+                  console.log(copy);
                   return copy;
                 });
                 setclicked_pl("");
@@ -171,9 +175,9 @@ const PlayList = () => {
                 borderRadius: 10,
               }}
             />
-            <TextField
+            <MyTextfield
               id="playlist_name"
-              label="نام پلی لیست"
+              text="نام پلی لیست"
               type="text"
               onChange={(event) => {
                 setnew_pl_name(event.currentTarget.value);
@@ -182,33 +186,22 @@ const PlayList = () => {
               style={{
                 width: 300,
                 backgroundColor: "#2a2033",
-                borderRadius: '10px',
-                marginLeft: "31%",
-                marginTop: 70,
-                marginBottom:40,
-                direction:'rtl'
+                margin: 10,
+                borderRadius: 10,
+                marginLeft: "58%",
+                marginTop: 30,
               }}
-              sx={{
-                "& .MuiFormLabel-root": {},
-                "& > :not(style)": { fontFamily: "Vazirmatn", color: "gray" },
-              }}
+              sx={{"& > :not(style)":{fontFamily:"Vazirmatn",color:"white"}}}
               variant="outlined"
               required
-              InputProps={{
-                sx: {
-                  "& input": {
-                    textAlign: "right",
-                  },
-                },
-              }}
             />
             <Autocomplete
               disablePortal
               id="combo-box-demo"
               options={Object.keys(music)}
               style={{
-                width: "90%",
-                marginLeft: "4%",
+                width: "80%",
+                marginLeft: "10%",
                 marginTop: "2%",
                 backgroundColor: "#2a2033",
                 borderRadius: "10px",
@@ -218,8 +211,8 @@ const PlayList = () => {
                   <MusicInfoContainer
                     name={option.key}
                     description={music[option.key]}
-                    Font_name="18px"
-                    Font_description="13px"
+                    Font_name='18px'
+                    Font_description='13px'
                     Space={1.2}
                     padding="20px"
                     onClick={() => {
@@ -237,13 +230,12 @@ const PlayList = () => {
                       ]);
                     }}
                     style={{
-                      backgroundColor: "#00cf2d",
+                      backgroundColor: "#5b268b",
                       width: 20,
                       height: 40,
                       margin: "20px",
-                      borderRadius: "10px",
+                      borderRadius: "20px",
                       color: "#cde6fe",
-                      fontFamily: "Vazirmatn",
                     }}
                     btntext="افزودن"
                   />
@@ -255,14 +247,7 @@ const PlayList = () => {
                   id="filled-basic"
                   label="آهنگ مورد نظر"
                   variant="filled"
-                  sx={{
-                    "& > :not(style)": {
-                      fontFamily: "Vazirmatn",
-                      color: "grey",
-                      direction:'rtl'
-                    },
-                  }}
-                  
+                  sx={{"& > :not(style)":{fontFamily:"Vazirmatn",color:"grey"}}}
                 />
               )}
             />
@@ -273,8 +258,8 @@ const PlayList = () => {
                     name={musics}
                     description={music[musics]}
                     Space={1}
-                    Font_name="20px"
-                    Font_description="10px"
+                    Font_name='20px'
+                    Font_description='10px'
                     padding="20px"
                     Size="50px"
                   />
@@ -282,7 +267,7 @@ const PlayList = () => {
                     variant="contained"
                     onClick={() => {
                       setadded_music((current) =>
-                        current.filter((choosed) => musics !== choosed)
+                        current.filter((musics) => musics !== music)
                       );
                     }}
                     style={{
@@ -292,7 +277,7 @@ const PlayList = () => {
                       margin: "20px",
                       borderRadius: "10px",
                       color: "#cde6fe",
-                      fontFamily: "Vazirmatn",
+                      fontFamily:"Vazirmatn",
                     }}
                     btntext="حذف"
                   />
@@ -332,16 +317,16 @@ const PlayList = () => {
 export default PlayList;
 const music = {
   "ماه پیشونی": "محسن چاوشی",
-  ال: "سینا پارسیان",
-  دریا: "رضا ملک زاده",
-  هیس: "آصف آریا",
+  'ال': "سینا پارسیان",
+ "دریا": "رضا ملک زاده",
+ "هیس": "آصف آریا",
   "قراضه چین": "محسن چاوشی",
-  نفس: "فرزاد فرزین",
+ "نفس": "فرزاد فرزین",
   "نداره این دنیا وفا": "ناصر یعقوبی",
   "آدم سابق": "رضا بهرام",
   "بگو انتخابم": "آنیل",
-  کولی: "همایون شجریان",
+ "کولی": "همایون شجریان",
   "رنگین کمون": "کسری زاهدی",
-  قرار: "مهدی احمدوند",
-  قاصدک: "پازل بند",
+ "قرار": "مهدی احمدوند",
+ 'قاصدک': "پازل بند",
 };

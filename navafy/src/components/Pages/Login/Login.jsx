@@ -10,7 +10,7 @@ import * as yup from "yup";
 import axios from "axios";
 import * as DataContainer from "../../../Static/DataContainer";
 import { UserValid } from "./LoginFormValidation";
-const loginUrl = DataContainer.API_LOGIN;
+const API_POST_NEW_RULE = DataContainer.API_SIGN_UP;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,27 +29,29 @@ const Login = () => {
     borderRadius: "0px",
   };
 
-  const onSubmit = async (values) => {
+  const onSubmit = (values) => {
     console.log("login");
 
-    let data = new FormData();
-    data.append("username", values.username);
-    data.append("password", values.password);
-
-    let config = {
+    // axios
+    //   .post(API_POST_NEW_RULE, {
+    //     username: values.username,
+    //     password: values.password,
+    //   })
+    //   .then((res) => localStorage.setItem("token", res.data.token));
+    axios({
       method: "post",
-      url: loginUrl,
-      data: data,
-    };
-
-    axios(config)
-      .then(function (res) {
-        localStorage.setItem("token", "Token " + res.data.token);
-        gotoHomePage();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      url: API_POST_NEW_RULE,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("user_token"),
+      },
+      params: {
+        username: values.username,
+        password: values.password,
+        confirmPassword:values.confirmPassword,
+      },
+    });
   };
   const {
     values,
@@ -183,7 +185,29 @@ const Login = () => {
               {errors.password && touched.password && (
                 <p style={{ fontSize: 12, color: "red" }}>{errors.password}</p>
               )}
-
+              <MyTextfield
+                id="confirmPassword"
+                type="password"
+                text="تکرار رمز"
+                name="confirmPassword"
+                minLength={8}
+                required
+                style={{ width: 300, backgroundColor: "#e0eef2" }}
+                variant="outlined"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={
+                  errors.confirmPassword && touched.confirmPassword
+                    ? true
+                    : false
+                }
+                value={values.confirmPassword}
+              ></MyTextfield>
+              {errors.confirmPassword && touched.confirmPassword && (
+                <p style={{ fontSize: 12, color: "red" }}>
+                  {errors.confirmPassword}
+                </p>
+              )}
               <MyButton
                 btntext="ورود"
                 type="submit"

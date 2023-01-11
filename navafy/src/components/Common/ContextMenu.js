@@ -5,39 +5,22 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
-import { useNavigate } from "react-router-dom";
 
 export default function FadeMenu(props) {
-  const navigate = useNavigate();
+  const items = props.items;
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [isartist, setisartist] = React.useState(false);
-
-
-  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
-    handleuseraccount();
   };
-  const logOut = () => {
-    props.sethasLogined(false);
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-  const handleuseraccount = () => {
-    if (isartist) {
-      navigate("/account/artist/overview");
-    } else {
-      navigate("/account/overview");
-    }
-  };
+
   return (
     <div>
       <IconButton
-        style={props.style}
         id="fade-button"
         aria-controls={open ? "fade-menu" : undefined}
         aria-haspopup="true"
@@ -48,7 +31,7 @@ export default function FadeMenu(props) {
         aria-label="account of current user"
         color="inherit"
       >
-        <AccountCircle style={{ fill: "#00cf2d" }} />
+        <AccountCircle  style={{ fill: "#00cf2d" }} />
       </IconButton>
       <Menu
         id="fade-menu"
@@ -60,19 +43,13 @@ export default function FadeMenu(props) {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose} style={{ fontFamily: "Vazirmatn" }}>
-          {"پروفایل من"}
-        </MenuItem>
-        <MenuItem onClick={logOut} style={{ fontFamily: "Vazirmatn" }}>
-          {"خروج"}
-        </MenuItem>
-        {/* {items.map((item) => (
+        {items.map((item) => (
           <React.Fragment key={item}>
             <MenuItem onClick={handleClose} style={{ fontFamily: "Vazirmatn" }}>
               {item}
             </MenuItem>
           </React.Fragment>
-        ))} */}
+        ))}
       </Menu>
     </div>
   );

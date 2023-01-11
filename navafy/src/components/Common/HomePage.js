@@ -36,11 +36,10 @@ import { Grid } from "@mui/material";
 import Dashboard from "./Dashboard";
 import MyAutoComplete from "../Common/AutoComplete";
 import FollowUnfollowContainer from "./FollowUnfollowContainer";
-import PostMediaPage from "../Pages/Post Media/PostMedia";
+import PostMediaPage from "../Pages/Psot Media/PostMedia";
 import PostMediaPopUp from "./PostMedia";
 import ProfileEdit from "../Pages/Profile Edit/ProfileEdit";
 import { Profile } from "../Pages/Profile Edit/Profile";
-import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -93,6 +92,8 @@ export default function MyAppBar() {
   const theme = useTheme();
   const navigate = useNavigate();
 
+  const location = useLocation();
+
   const gotoHomePage = () => navigate("/homepage");
   const gotoLibraryPage = () => navigate("/my_music_library");
   const gotoMakePlayListPage = () => navigate("/make_playlist");
@@ -106,14 +107,6 @@ export default function MyAppBar() {
   const [hasLogined, sethasLogined] = React.useState(false);
   const [hasSignedUp, sethasSignedUp] = React.useState(false);
 
-  React.useEffect(() => {
-    console.log(localStorage.getItem("token"));
-    if (localStorage.getItem("token")) {
-      sethasLogined(true);
-    } else sethasLogined(false);
-  }, [localStorage.getItem("token")]);
-
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -124,6 +117,9 @@ export default function MyAppBar() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -143,7 +139,94 @@ export default function MyAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const menuId = "primary-search-account-menu";
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      {/* <MenuItem
+        style={{ fontFamily: "Vazirmatn" }}
+        onClick={() => {
+          handleMenuClose();
+          gotoProfileEditPage();
+        }}
+      >
+        پروفایل
+      </MenuItem>
+      <MenuItem style={{ fontFamily: "Vazirmatn" }} onClick={handleMenuClose}>
+        اکانت من
+      </MenuItem>
+      <MenuItem
+        style={{ fontFamily: "Vazirmatn", color: "red" }}
+        onClick={handleMenuClose}
+      >
+        {" "}
+        خروج
+      </MenuItem> */}
+      <Dashboard />
+    </Menu>
+  );
+
   const mobileMenuId = "primary-search-account-menu-mobile";
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <Badge badgeContent={17} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+      </MenuItem>
+    </Menu>
+  );
 
   return (
     <body>
@@ -174,14 +257,13 @@ export default function MyAppBar() {
               نوافای
             </Typography>
             <MyButton
+              disabled={hasSignedUp}
               btntext="ثبت نام"
               onClick={() => {
                 gotoSignUpPage();
               }}
               variant="contained"
               style={{
-                display: hasLogined ? "none" : "block",
-
                 marginLeft: 50,
                 backgroundColor: "#00cf2d",
                 color: "white",
@@ -194,13 +276,13 @@ export default function MyAppBar() {
               }}
             />
             <MyButton
+              disabled={hasLogined}
               btntext="ورود"
               onClick={() => {
                 gotoLoginPage();
               }}
               variant="contained"
               style={{
-                display: hasLogined ? "none" : "block",
                 marginLeft: 20,
                 backgroundColor: "#00cf2d",
                 color: "white",
@@ -217,14 +299,14 @@ export default function MyAppBar() {
                 borderRadius: "none",
                 width: 300,
                 height: 40,
-                marginLeft: 25,
+                marginLeft: 250,
                 backgroundColor: "white",
                 color: "grey",
               }}
             />
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              {hasLogined && <FadeMenu sethasLogined={sethasLogined} />}
+              <FadeMenu items={["اکانت من", "پروفایل", "خروج"]} />
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
@@ -312,6 +394,32 @@ export default function MyAppBar() {
                     }}
                   >
                     کتابخانه من
+                  </p>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <Divider style={{ backgroundColor: "white" }} />
+
+            <ListItem disablePadding>
+              <ListItemButton
+                onClick={() => {
+                  gotoMakePlayListPage();
+                }}
+              >
+                <ListItemIcon>
+                  <CreatePlayListIcon style={{ fill: "white" }} />
+                </ListItemIcon>
+                <ListItemText>
+                  <p
+                    style={{
+                      fontFamily: "Vazirmatn",
+                      fontSize: 14,
+                      height: 15,
+                      fontWeight: "bold",
+                      color: "white",
+                    }}
+                  >
+                    ایجاد فهرست پخش
                   </p>
                 </ListItemText>
               </ListItemButton>
