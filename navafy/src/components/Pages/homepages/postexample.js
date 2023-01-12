@@ -39,6 +39,30 @@ const MediaUrl = DataContainer.API_MEDIA;
 const CreateCommentUrl = DataContainer.API__COMMENT_CREATE;
 
 const Media = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await MediaUrl.get();
+        setPosts(response);
+      } catch (err) {
+        if (err.response) {
+          // Not in the 200 response range
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  //--------------------------------------------------
+  //نظرات
   const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
@@ -63,7 +87,7 @@ const Media = () => {
         console.log(error);
       });
   };
-
+  //---------------------------------------------------
   /*  useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -132,10 +156,12 @@ const Media = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <>
       <Box dir="rtl">
-        <Button onClick={showmedia}></Button>
+        <Button onClick={posts}></Button>
+        <box posts={posts} />
         <Card>
           <CardActionArea>
             <CardContent sx={{ flex: "1 0 auto" }}>

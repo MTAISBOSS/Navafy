@@ -25,10 +25,59 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import token from "../../Login/Login";
+import { Api, SettingsInputCompositeSharp } from "@mui/icons-material";
+import axios from "axios";
+import { useEffect } from "react";
+import { Stack } from "react-bootstrap";
+import * as DataContainer from "../../../../Static/DataContainer";
+
+const MediaUrl = DataContainer.API_MEDIA;
+const CreateCommentUrl = DataContainer.API__COMMENT_CREATE;
+
 export const Card20s = () => {
   const [userstate, setUserstate] = useState(true);
+  const [message, setMessage] = useState("");
 
-  function handleClick() {
+  const handleChange = (event) => {
+    setMessage(event.target.value);
+
+    console.log("value is:", event.target.value);
+  };
+
+  const createcomment = async () => {
+    console.log("creatcomment");
+
+    axios
+      .post(CreateCommentUrl, {
+        text: message,
+        media: "",
+      })
+      .then((res) => {
+        console.log(res);
+        setOpen(false);
+      });
+  };
+
+  const checkUser = async () => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      return setOpen(true);
+    } else {
+      return toast.warn("برای ارسال نظر، ابتدا وارد حساب کاربری خود شوید.", {
+        position: "top-center",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
+  /*  function handleClick() {
     if (userstate == true) {
       return setOpen(true);
     } else {
@@ -43,7 +92,7 @@ export const Card20s = () => {
         theme: "light",
       });
     }
-  }
+  } */
 
   const [open, setOpen] = React.useState(false);
 
@@ -118,7 +167,7 @@ export const Card20s = () => {
                 </IconButton>
               </Grid>
               <Grid item md={2}>
-                <IconButton aria-label="comment" onClick={handleClick}>
+                <IconButton aria-label="comment" onClick={checkUser}>
                   <ToastContainer
                     open={!useState}
                     position="top-center"
@@ -147,11 +196,13 @@ export const Card20s = () => {
                       type="email"
                       fullWidth
                       variant="standard"
+                      onChange={handleChange}
+                      value={message}
                     />
                   </DialogContent>
                   <DialogActions>
                     <Button onClick={handleClose}>خروج</Button>
-                    <Button onClick={handleClose}>ارسال</Button>
+                    <Button onClick={createcomment}>ارسال</Button>
                   </DialogActions>
                 </Dialog>
               </Grid>
