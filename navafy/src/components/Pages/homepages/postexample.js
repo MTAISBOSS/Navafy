@@ -1,10 +1,15 @@
+import { Api, SettingsInputCompositeSharp } from "@mui/icons-material";
+import axios from "axios";
+import { useEffect } from "react";
+import { Stack } from "react-bootstrap";
+import * as DataContainer from "../../../Static/DataContainer";
+
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, IconButton } from "@mui/material";
-import card20s from "../../../../Assets/Image/cardsimg/20s.jpg";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SentimentSatisfiedTwoToneIcon from "@mui/icons-material/SentimentSatisfiedTwoTone";
@@ -16,6 +21,7 @@ import CardActions from "@mui/material/CardActions";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ConstructionRounded } from "@mui/icons-material";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -25,18 +31,38 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import token from "../../Login/Login";
-import { Api, SettingsInputCompositeSharp } from "@mui/icons-material";
-import axios from "axios";
-import { useEffect } from "react";
-import { Stack } from "react-bootstrap";
-import * as DataContainer from "../../../../Static/DataContainer";
+import { useFormik, validationSchema } from "formik";
+
+import token from "../Login/Login";
 
 const MediaUrl = DataContainer.API_MEDIA;
 const CreateCommentUrl = DataContainer.API__COMMENT_CREATE;
 
-export const Card20s = () => {
-  const [userstate, setUserstate] = useState(true);
+const Media = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await MediaUrl.get();
+        setPosts(response);
+      } catch (err) {
+        if (err.response) {
+          // Not in the 200 response range
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  //--------------------------------------------------
+  //نظرات
   const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
@@ -44,6 +70,35 @@ export const Card20s = () => {
 
     console.log("value is:", event.target.value);
   };
+
+  const showmedia = async () => {
+    console.log("Media");
+
+    let config = {
+      method: "get",
+      url: MediaUrl,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  //---------------------------------------------------
+  /*  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const response = await DataContainer.API_MEDIA.get();
+        setPosts(response.data);
+      } catch (err) {
+        console.log(error);
+      }
+    };
+    fetchPost();
+  }); */
 
   const createcomment = async () => {
     console.log("creatcomment");
@@ -77,7 +132,9 @@ export const Card20s = () => {
     }
   };
 
-  /*  function handleClick() {
+  const [userstate, setUserstate] = useState(true);
+  /* 
+  function handleClick() {
     if (userstate == true) {
       return setOpen(true);
     } else {
@@ -101,72 +158,14 @@ export const Card20s = () => {
   };
 
   return (
-    <Card
-      sx={{
-        "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
-        width: 250,
-        height: 270,
-      }}
-    >
-      <CardActionArea>
-        <CardMedia>
-          <img src={card20s} height="140" width="250" />
-        </CardMedia>
-        <CardContent sx={{ flex: "1 0 auto" }}>
-          <Box
-            component="div"
-            sx={{
-              textOverflow: "ellipsis",
-              overflow: "hidden",
-            }}
-          >
-            <Typography
-              component="div"
-              variant="h5"
-              sx={{
-                "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
-                textOverflow: "ellipsis",
-                overflow: "hidden",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "Vazirmatn",
-                  fontSize: 20,
-                  height: 15,
-                  fontWeight: "bold",
-                }}
-              >
-                نام مدیا
-              </p>
-            </Typography>
-            <Typography
-              variant="h6"
-              color="text.secondary"
-              component="div"
-              sx={{
-                "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
-              }}
-            >
-              نام آرتیست
-            </Typography>
-          </Box>
-          <CardActions>
-            <Grid container>
-              <Grid item md={6}>
-                <Box></Box>
-              </Grid>
-              <Grid item md={2}>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-              </Grid>
-              <Grid item md={2}>
-                <IconButton aria-label="like">
-                  <SentimentSatisfiedTwoToneIcon />
-                </IconButton>
-              </Grid>
-              <Grid item md={2}>
+    <>
+      <Box dir="rtl">
+        <Button onClick={posts}></Button>
+        <box posts={posts} />
+        <Card>
+          <CardActionArea>
+            <CardContent sx={{ flex: "1 0 auto" }}>
+              <CardActions>
                 <IconButton aria-label="comment" onClick={checkUser}>
                   <ToastContainer
                     open={!useState}
@@ -205,11 +204,13 @@ export const Card20s = () => {
                     <Button onClick={createcomment}>ارسال</Button>
                   </DialogActions>
                 </Dialog>
-              </Grid>
-            </Grid>
-          </CardActions>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+              </CardActions>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Box>
+    </>
   );
 };
+
+export default Media;
