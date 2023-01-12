@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Sign_up from "./components/Pages/Sign Up/Sign_up";
 import Artist_Sign_up from "./components/Pages/Artist Sign Up/Artist_Sign_Up";
 
-//import MyHomePage from "./components/Pages/homepages/Artist_Homepage.jsx";
+import MyHomePage from "./components/Pages/homepages/postexample.js";
 //import MyHomePage from "./components/Comment";
-import MyHomePage from "./components/Pages/homepages/Guest_Homepage.jsx";
+//import MyHomePage from "./components/Pages/homepages/Guest_Homepage.jsx";
 //import Homepage from "./components/Pages/Home Page/Homepage";
 //import MyHomePage from "./components/Common/HomePage";
 //import MyHomePage from "./components/Pages/Home Page/HomePage.js";
@@ -22,11 +22,8 @@ import ArtistAccount_Overview from "./components/Pages/Artist Account/Account";
 import AddMedia_Test from "./components/Pages/AddMedia_Artist/AddMedia_Test";
 
 function App() {
-  
-
   return (
     <div>
-      
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<MyHomePage />} />
