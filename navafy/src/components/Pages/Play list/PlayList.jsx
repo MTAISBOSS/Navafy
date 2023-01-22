@@ -6,28 +6,11 @@ import "./Playlist.css";
 import HomePage from "../../Common/HomePage";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+import axios from "axios";
+import PostMediaPage from "../Post Media/PostMedia";
+const musics_url = "127.0.0.1:8000/api/music/list/";
+const Token = localStorage.getItem("token");
 const PL = {};
-const show_musics = (props) => {
-  const data = props.item;
-  return (
-    <div className="musics">
-      {PL[data].map((song) => (
-        <div className="music">
-          <MusicInfoContainer
-            width="60%"
-            height="60px"
-            name={song}
-            description={music[song]}
-            Space="1"
-            Size="60px"
-            Font_name="25px"
-            Font_description="14px"
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
 
 const PlayList = () => {
   const [playlist_musics, setplaylist_musics] = useState("");
@@ -39,7 +22,31 @@ const PlayList = () => {
   const [added_music, setadded_music] = useState([]);
   const [new_pl_name, setnew_pl_name] = useState("");
   const [clicked_pl, setclicked_pl] = useState("");
-  const name = "";
+  const [openMusic, setOpenMusic] = React.useState(false);
+  const [current_music,setcurrent_music]=useState({name:'',singer:''})
+  const handleOpenMusic = () => setOpenMusic(true);
+  const handleCloseMusic = () => setOpenMusic(false);
+  function show_musics(props) {
+    const data = props.item;
+    return (
+      <div className="musics">
+        {PL[data].map((song) => (
+          <div onClick={()=>{setcurrent_music({name:song,singer:music[song]});handleOpenMusic();}} className="music">
+            <MusicInfoContainer
+              width="60%"
+              height="60px"
+              name={song}
+              description={music[song]}
+              Space="1"
+              Size="60px"
+              Font_name="25px"
+              Font_description="14px"
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
   return (
     <>
       <div style={{ height: "60px" }}>
@@ -181,12 +188,12 @@ const PlayList = () => {
               name="playlist_name"
               style={{
                 width: 300,
-                backgroundColor: "#2a2033",
-                borderRadius: '10px',
+                backgroundColor: "#e0eef2",
+                borderRadius: "10px",
                 marginLeft: "31%",
                 marginTop: 70,
-                marginBottom:40,
-                direction:'rtl'
+                marginBottom: 40,
+                direction: "rtl",
               }}
               sx={{
                 "& .MuiFormLabel-root": {},
@@ -210,7 +217,7 @@ const PlayList = () => {
                 width: "90%",
                 marginLeft: "4%",
                 marginTop: "2%",
-                backgroundColor: "#2a2033",
+                backgroundColor: "#e0eef2",
                 borderRadius: "10px",
               }}
               renderOption={(option, { selected }) => (
@@ -259,10 +266,9 @@ const PlayList = () => {
                     "& > :not(style)": {
                       fontFamily: "Vazirmatn",
                       color: "grey",
-                      direction:'rtl'
+                      direction: "rtl",
                     },
                   }}
-                  
                 />
               )}
             />
@@ -325,11 +331,32 @@ const PlayList = () => {
             />
           </div>
         </Modal>
+        <Modal
+          open={openMusic}
+          onClose={handleCloseMusic}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <div className="create_playlist">
+            <PostMediaPage musicName={current_music.name} singer={current_music.singer}/>
+          </div>
+        </Modal>
       </div>
     </>
   );
 };
 export default PlayList;
+axios
+  .get({
+    url: musics_url,
+    headers: { Authorization: Token },
+  })
+  .then(function (res) {
+    console.log(res);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 const music = {
   "ماه پیشونی": "محسن چاوشی",
   ال: "سینا پارسیان",

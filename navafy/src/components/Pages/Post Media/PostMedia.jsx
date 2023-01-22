@@ -20,13 +20,8 @@ import MyButton from "../../Common/MyButton";
 import { Divider, TextField } from "@mui/material";
 
 const PostMediaPage = (props) => {
-  // const singer = "The wekkend";
-  // const musicName = "Blinding Lights";
-  // const musicDetail ="سلاششتسیحش  یتنشسجیشس جختشسخیعتشسحخیشسینجتنشسبخشستبشبش شعت خبتت شسحخی رسیحب یس";
-
   const singer = props.singer;
   const musicName = props.musicName;
-  const musicDetail =props.musicDetail;
 
   const [open, setOpen] = React.useState(false);
   const [comment, setcomment] = React.useState("");
@@ -286,12 +281,7 @@ const PostMediaPage = (props) => {
             </IconButton>
           </Grid>
         </Grid>
-        <Grid item  style={{ backgroundColor: "#2b2135" }}>
-          
-           
-              <h4 style={{color:"white",margin:20}}>{musicDetail}</h4>
-            
-          
+        <Grid item  style={{ backgroundColor: "#2b2135" }}>      
         </Grid>
       </Grid>
     </div>
