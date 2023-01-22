@@ -15,12 +15,18 @@ const MediaUrl = DataContainer.API_MEDIA;
 
 const Card20s = () => {
   const [medias, setMedias] = useState([]);
-
+  const token = localStorage.getItem("token");
   const fetchProducts = () => {
-    axios.get(MediaUrl).then((response) => {
-      const medias = response.data;
-      setMedias(medias);
-    });
+    axios
+      .get(MediaUrl, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        const medias = response.data;
+        setMedias(medias);
+      });
   };
   return (
     <Stack>
