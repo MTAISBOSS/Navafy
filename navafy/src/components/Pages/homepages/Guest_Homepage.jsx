@@ -1,6 +1,7 @@
 import { AddBox } from "@mui/icons-material";
 import { Box, Grid } from "@mui/material";
 import { Stack } from "@mui/system";
+import { typography } from "@mui/system";
 
 import { Card20s } from "../Home Page/cards/Card20s";
 
@@ -28,6 +29,9 @@ const homepage = () => {
               bgcolor: "text.secondary",
               color: "background.paper",
               p: 2,
+              fontWeight: "bold",
+              fontSize: 23,
+              fontFamily: "Vazirmatn",
             }}
           >
             تازه ترین ها
@@ -93,6 +97,9 @@ const homepage = () => {
               bgcolor: "text.secondary",
               color: "background.paper",
               p: 2,
+              fontWeight: "bold",
+              fontSize: 23,
+              fontFamily: "Vazirmatn",
             }}
           >
             معروف ترین ها

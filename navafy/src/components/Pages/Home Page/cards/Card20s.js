@@ -36,6 +36,28 @@ const MediaUrl = DataContainer.API_MEDIA;
 const CreateCommentUrl = DataContainer.API__COMMENT_CREATE;
 
 export const Card20s = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await MediaUrl.get();
+        setPosts(response);
+      } catch (err) {
+        if (err.response) {
+          // Not in the 200 response range
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    };
+
+    fetchPosts();
+  }, []);
+  //---------------------------------------------------------
   const [userstate, setUserstate] = useState(true);
   const [message, setMessage] = useState("");
 
@@ -66,7 +88,7 @@ export const Card20s = () => {
     } else {
       return toast.warn("برای ارسال نظر، ابتدا وارد حساب کاربری خود شوید.", {
         position: "top-center",
-        autoClose: false,
+
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -148,7 +170,16 @@ export const Card20s = () => {
                 "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
               }}
             >
-              نام آرتیست
+              <p
+                style={{
+                  fontFamily: "Vazirmatn",
+                  fontSize: 20,
+                  height: 15,
+                  fontWeight: "bold",
+                }}
+              >
+                نام آرتیست
+              </p>
             </Typography>
           </Box>
           <CardActions>
@@ -171,7 +202,6 @@ export const Card20s = () => {
                   <ToastContainer
                     open={!useState}
                     position="top-center"
-                    autoclose={false}
                     newestOnTop
                     closeOnClick
                     rt1
