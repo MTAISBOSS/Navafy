@@ -18,6 +18,8 @@ import Account_ChangeInfo from "./Account_ChangeInfo";
 import MyAppBar from "../../Common/HomePage";
 import { Autocomplete } from "@mui/material";
 import { Stack } from "@mui/material";
+import * as DataContainer from "../../../Static/DataContainer";
+
 
 const Account = () => {
   const navigate = useNavigate();
@@ -26,9 +28,26 @@ const Account = () => {
   const gotoChangeInfo = () => navigate("/account/artist/changeinfo");
   const gotoChangePassword = () => navigate("/account/artist/changepassword");
 
-  const birthday = "12/20/2005";
-  const email = "ali@gmail.com";
-  const username = "Aliiee";
+  const [userdata,setuserdata] = useState([]);
+  var axios = require("axios");
+
+  var config = {
+    method: "get",
+    url: DataContainer.API_USER_DATA,
+    headers: {},
+  };
+
+  axios(config)
+    .then(function (response) {
+      setuserdata(response.data?.results);
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  const email = userdata.email;
+  const username = userdata.username;
 
   const favorite = [
     { title: "راک", id: 1 },
@@ -85,20 +104,6 @@ const Account = () => {
                   disabled={true}
                   label="ایمیل"
                   value={email}
-                ></TextField>
-                <TextField
-                  style={{ width: "80%", margin: 10 }}
-                  sx={{
-                    "& > :not(style)": {
-                      fontFamily: "Vazirmatn",
-                      direction: "rtl",
-                    },
-                  }}
-                  id="outlined-disabled"
-                  variant="standard"
-                  disabled={true}
-                  label="تاریخ تولد"
-                  value={birthday}
                 ></TextField>
                 <Stack spacing={3} sx={{ width: 300 }}>
                   <Autocomplete

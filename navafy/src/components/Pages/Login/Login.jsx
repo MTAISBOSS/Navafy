@@ -8,9 +8,16 @@ import { useFormik, validationSchema } from "formik";
 import { Grid } from "@mui/material";
 import * as yup from "yup";
 import axios from "axios";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import * as DataContainer from "../../../Static/DataContainer";
 import { UserValid } from "./LoginFormValidation";
+
 const loginUrl = DataContainer.API_LOGIN;
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,8 +37,6 @@ const Login = () => {
   };
 
   const onSubmit = async (values) => {
-    console.log("login");
-
     let data = new FormData();
     data.append("username", values.username);
     data.append("password", values.password);
@@ -49,6 +54,8 @@ const Login = () => {
       })
       .catch(function (error) {
         console.log(error);
+
+        handleClick();
       });
   };
   const {
@@ -67,11 +74,29 @@ const Login = () => {
     },
     validationSchema: UserValid,
     onSubmit,
+   
   });
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   return (
     <Grid container xs={12} direction="row">
-      <script src="../../../Static/DataContainer.js"></script>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          .نام کاربری یا رمز ورود اشتباه است
+        </Alert>
+      </Snackbar>
       <Grid className="center" item xs={4} container direction="column">
         {/* <img style={{ height: "100vh", width: "120vh" }} src={background} /> */}
         <Grid item xs={2} />

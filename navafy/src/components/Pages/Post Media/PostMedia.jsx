@@ -20,8 +20,14 @@ import MyButton from "../../Common/MyButton";
 import { Divider, TextField } from "@mui/material";
 
 const PostMediaPage = (props) => {
-  const singer = "The wekkend";
-  const musicName = "Blinding Lights";
+  // const singer = "The wekkend";
+  // const musicName = "Blinding Lights";
+  // const musicDetail ="سلاششتسیحش  یتنشسجیشس جختشسخیعتشسحخیشسینجتنشسبخشستبشبش شعت خبتت شسحخی رسیحب یس";
+
+  const singer = props.singer;
+  const musicName = props.musicName;
+  const musicDetail =props.musicDetail;
+
   const [open, setOpen] = React.useState(false);
   const [comment, setcomment] = React.useState("");
   const [isChanging, setisChanging] = React.useState(false);
@@ -279,6 +285,13 @@ const PostMediaPage = (props) => {
               <SpeedDial style={{ margin: -15, marginRight: 20 }} />
             </IconButton>
           </Grid>
+        </Grid>
+        <Grid item  style={{ backgroundColor: "#2b2135" }}>
+          
+           
+              <h4 style={{color:"white",margin:20}}>{musicDetail}</h4>
+            
+          
         </Grid>
       </Grid>
     </div>

@@ -16,12 +16,14 @@ import { Home } from "@mui/icons-material";
 import { Create } from "@mui/icons-material";
 import { Password } from "@mui/icons-material";
 import MyAppBar from "../../Common/HomePage";
+import DataContainer, { API_EDIT_PROFILE } from "../../../Static/DataContainer";
 
+const profielediturl = API_EDIT_PROFILE;
 const Account = () => {
   const [email, setemail] = useState("");
   const [username, setusername] = useState("");
-  const [birthday, setbirthday] = useState("");
-  const [phonenumber, setphonenumber] = useState("");
+  const [lastname, setlastname] = useState("");
+  const [firstname, setfirstname] = useState("");
 
   const navigate = useNavigate();
 
@@ -29,24 +31,40 @@ const Account = () => {
   const gotoChangeInfo = () => navigate("/account/changeinfo");
   const gotoChangePassword = () => navigate("/account/changepassword");
 
-  const handleusername = (e) => {
-    setusername(e.value);
-  };
-  const handleemail = (e) => {
-    setemail(e.value);
-  };
-  const handlebirthday = (e) => {
-    setbirthday(e.value);
-  };
-  const handlephonenumber = (e) => {
-    setphonenumber(e.value);
-  };
-  const logdata = (e) => {
-    console.log(this.email);
-    console.log(this.birthday);
+  const submitdata = () => {
+    var axios = require("axios");
+    var FormData = require("form-data");
+    var data = new FormData();
+    data.append("username", username);
+    data.append("email", email);
+    data.append("first_name", firstname);
+    data.append("last_name", lastname);
+
     console.log(username);
-    console.log(phonenumber);
+    console.log(email);
+    console.log(firstname);
+    console.log(lastname);
+
+
+
+    var config = {
+      method: "put",
+      url: profielediturl,
+      headers: {
+        ...data.getHeaders(),
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
+
   return (
     <div align="center" style={{ marginTop: 80, backgroundColor: "#2b2135" }}>
       <MyAppBar />
@@ -92,7 +110,7 @@ const Account = () => {
                 variant="standard"
                 label="نام کاربری"
                 onChange={(e) => {
-                  handleusername(e);
+                  setusername(e.target.value);
                 }}
               ></TextField>
               <TextField
@@ -107,7 +125,7 @@ const Account = () => {
                 variant="standard"
                 label="ایمیل"
                 onChange={(e) => {
-                  handleemail(e);
+                  setemail(e.target.value);
                 }}
               ></TextField>
               <TextField
@@ -120,9 +138,9 @@ const Account = () => {
                 }}
                 id="outlined-disabled"
                 variant="standard"
-                label="تاریخ تولد"
+                label="نام"
                 onChange={(e) => {
-                  handlebirthday(e);
+                  setfirstname(e.target.value);
                 }}
               ></TextField>
               <TextField
@@ -135,15 +153,15 @@ const Account = () => {
                 }}
                 id="outlined-disabled"
                 variant="standard"
-                label="شماره تلفن همراه"
+                label="نام خانوادگی"
                 onChange={(e) => {
-                  handlephonenumber(e);
+                  setlastname(e.target.value);
                 }}
               ></TextField>
               <MyButton
                 btntext="ثبت"
                 type="submit"
-                onClick={logdata}
+                onClick={submitdata}
                 style={{
                   width: 150,
                   height: 40,

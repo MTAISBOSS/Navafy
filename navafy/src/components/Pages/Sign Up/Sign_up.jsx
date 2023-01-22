@@ -8,9 +8,15 @@ import { useFormik, validateYupSchema } from "formik";
 import { Grid } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import axios from "axios";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import { UserValid } from "../Sign Up/SignUpFormValidation";
 import * as DataContainer from "../../../Static/DataContainer";
 const signupUrl = DataContainer.API_SIGN_UP;
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Sign_up = () => {
   const navigate = useNavigate();
@@ -22,7 +28,6 @@ const Sign_up = () => {
   const onSubmit = async (values) => {
     console.log("signup");
 
-   
     axios
       .post(signupUrl, {
         username: values.username,
@@ -32,6 +37,11 @@ const Sign_up = () => {
       .then((res) => {
         console.log(res);
         gotoLoginPage();
+      })
+      .catch(function (error) {
+        console.log(error);
+
+        handleClick();
       });
   };
 
@@ -62,9 +72,26 @@ const Sign_up = () => {
     validationSchema: UserValid,
     onSubmit,
   });
+  const [open, setOpen] = React.useState(false);
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   return (
     <Grid container xs={12} direction="row">
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          .لطفا دوباره امتحان کنید
+        </Alert>
+      </Snackbar>
       <Grid className="center" item xs={8} container direction="column">
         <Grid
           item
