@@ -3,8 +3,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { CardActionArea, IconButton } from "@mui/material";
 
+import CardMedia from "@mui/material/CardMedia";
+
 import { Box, Grid } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
+import Typography from "@mui/material/Typography";
 
 import { Stack } from "react-bootstrap";
 import { useState } from "react";
@@ -28,6 +31,8 @@ const Card20s = () => {
         setMedias(medias);
       });
   };
+  console.log(medias.image);
+  console.log(medias);
   return (
     <Stack>
       <Box
@@ -39,7 +44,11 @@ const Card20s = () => {
           fontSize: 23,
           fontFamily: "Vazirmatn",
         }}
-      ></Box>
+      >
+        <p>
+          <button onClick={fetchProducts}>Fetch Products</button>
+        </p>
+      </Box>
       <Box dir="rtl">
         <Card
           sx={{
@@ -49,20 +58,31 @@ const Card20s = () => {
           }}
         >
           <CardActionArea>
+            <CardMedia>
+              <img src={medias.image} height="140" width="250" />
+            </CardMedia>
             <CardContent sx={{ flex: "1 0 auto" }}>
-              <CardActions>
-                <p>Product List</p>
-                <p>
-                  <button onClick={fetchProducts}>Fetch Products</button>
+              <Typography
+                component="div"
+                variant="h5"
+                sx={{
+                  "& > :not(style)": { color: "grey", fontFamily: "Vazirmatn" },
+                  textOverflow: "ellipsis",
+                  overflow: "hidden",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "Vazirmatn",
+                    fontSize: 20,
+                    height: 15,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {medias.title}
                 </p>
-                <ul>
-                  {medias.map((media) => (
-                    <li key={media.title}>
-                      {media.artist}&nbsp;{media.genre}
-                    </li>
-                  ))}
-                </ul>
-              </CardActions>
+              </Typography>
+              <CardActions></CardActions>
             </CardContent>
           </CardActionArea>
         </Card>

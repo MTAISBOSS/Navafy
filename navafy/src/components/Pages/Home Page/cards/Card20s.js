@@ -36,27 +36,20 @@ const MediaUrl = DataContainer.API_MEDIA;
 const CreateCommentUrl = DataContainer.API__COMMENT_CREATE;
 
 export const Card20s = () => {
-  const [posts, setPosts] = useState([]);
+  const [medias, setMedias] = useState([]);
+  const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await MediaUrl.get();
-        setPosts(response);
-      } catch (err) {
-        if (err.response) {
-          // Not in the 200 response range
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    };
+  axios
+    .get(MediaUrl, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((response) => {
+      const medias = response.data;
+      setMedias(medias);
+    });
 
-    fetchPosts();
-  }, []);
   //---------------------------------------------------------
   const [userstate, setUserstate] = useState(true);
   const [message, setMessage] = useState("");
@@ -159,7 +152,7 @@ export const Card20s = () => {
                   fontWeight: "bold",
                 }}
               >
-                نام مدیا
+                {medias.title}
               </p>
             </Typography>
             <Typography
@@ -178,7 +171,7 @@ export const Card20s = () => {
                   fontWeight: "bold",
                 }}
               >
-                نام آرتیست
+                {medias.artist}
               </p>
             </Typography>
           </Box>
