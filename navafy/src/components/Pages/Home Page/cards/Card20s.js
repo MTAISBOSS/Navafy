@@ -66,7 +66,7 @@ export const Card20s = () => {
     axios
       .post(CreateCommentUrl, {
         text: message,
-        media: "",
+        media: medias,
       })
       .then((res) => {
         console.log(res);
@@ -171,7 +171,7 @@ export const Card20s = () => {
                   fontWeight: "bold",
                 }}
               >
-                {medias.artist}
+                {medias.descrption}
               </p>
             </Typography>
           </Box>
